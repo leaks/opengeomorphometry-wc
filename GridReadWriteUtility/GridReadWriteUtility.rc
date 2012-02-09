@@ -1,0 +1,250 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\GridReadWriteUtility.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\GridReadWriteUtility.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About GridReadWriteUtility"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "GridReadWriteUtility Version 1.0",IDC_STATIC,40,10,119,
+                    8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_GRIDREADWRITEUTILITY_DIALOG DIALOGEX 0, 0, 471, 256
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "GridReadWriteUtility"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_ROWS,201,23,93,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_COLUMNS,201,38,93,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_X,201,53,93,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_Y,201,68,93,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_CELLSIZE,201,83,93,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_MISSINGDATA,201,98,93,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_INPUT,282,123,12,12
+    PUSHBUTTON      "/...",IDC_BUTTON_OUTPUT,282,141,12,12
+    COMBOBOX        IDC_COMBO_FIELDS,92,157,203,81,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Run",IDOK,77,216,50,14
+    PUSHBUTTON      "Close",IDCANCEL,309,214,50,14
+    GROUPBOX        "Static",IDC_STATIC,13,16,400,98
+    CONTROL         "DBF To GRID",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,28,39,63,9
+    CONTROL         "GRID To DBF",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,28,
+                    25,63,9
+    EDITTEXT        IDC_EDIT_INPUT,92,123,190,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "Input File:",IDC_STATIC,14,125,73,10
+    EDITTEXT        IDC_EDIT_OUTPUT,92,141,190,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",NOT 
+                    WS_VISIBLE | WS_BORDER,42,204,376,9
+    LTEXT           "Output File:",IDC_STATIC,14,141,73,10
+    LTEXT           "Input Field:",IDC_STATIC,14,157,60,12
+    LTEXT           "Number of Rows:",IDC_STATIC,131,25,61,9
+    LTEXT           "Number of Columns:",IDC_STATIC,131,40,67,9
+    LTEXT           "Lower Left X:",IDC_STATIC,131,55,61,9
+    LTEXT           "Lower Left Y:",IDC_STATIC,131,70,61,9
+    LTEXT           "Missing Data:",IDC_STATIC,131,100,61,9
+    LTEXT           "Cell Size:",IDC_STATIC,131,85,64,9
+    LTEXT           "",IDC_STATIC_STATUS,40,191,100,10
+    PUSHBUTTON      "Load Header Information",IDC_BUTTON_LOADHEADER,312,24,
+                    88,13,WS_DISABLED
+    EDITTEXT        IDC_EDIT_FIELD_WIDTH,353,122,77,13,ES_AUTOHSCROLL
+    LTEXT           "Width:",IDC_STATIC,309,124,28,8
+    EDITTEXT        IDC_EDIT_PRECISION,353,138,77,13,ES_AUTOHSCROLL
+    LTEXT           "Precision:",IDC_STATIC,309,140,32,8
+    COMBOBOX        IDC_COMBO_FIELDTYPE,365,87,77,48,CBS_DROPDOWN | NOT 
+                    WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Data type:",IDC_STATIC,322,89,36,9,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FIELDNAME,353,154,77,13,ES_AUTOHSCROLL
+    LTEXT           "Name:",IDC_STATIC,309,156,34,9
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "GridReadWriteUtility MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "GridReadWriteUtility\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "GridReadWriteUtility.EXE\0"
+            VALUE "ProductName", "GridReadWriteUtility Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_GRIDREADWRITEUTILITY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 464
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 249
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About GridReadWriteUtility..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\GridReadWriteUtility.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

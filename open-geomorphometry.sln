@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "open-geomorphometry", "open-geomorphometry\open-geomorphometry.vcxproj", "{84B857F8-8CDF-413D-A4B3-D1517662C46A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "landmap", "FLOWMAPRWINVELEV\PROJECT_FILES\landmap.vcxproj", "{778B79E4-8315-35D0-2BA7-0A42222ED7A5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeppMapr", "WEPPMAPR\PROJECT_FILES\WeppMapr.vcxproj", "{411B6EA7-E5FB-B8B2-2C74-C712E16A6017}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "facet", "FACET\facet.vcxproj", "{753DE59B-D00B-FA0C-4F4D-28936C631030}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "form", "FORM\form.vcxproj", "{51F1B18E-B2B5-0CD4-3E24-DD0BC485800C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GridReadWriteUtility", "GridReadWriteUtility\GridReadWriteUtility.vcxproj", "{65DF1036-A11C-0E0B-334C-BB385885A7C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84B857F8-8CDF-413D-A4B3-D1517662C46A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{84B857F8-8CDF-413D-A4B3-D1517662C46A}.Debug|Win32.Build.0 = Debug|Win32
+		{84B857F8-8CDF-413D-A4B3-D1517662C46A}.Release|Win32.ActiveCfg = Release|Win32
+		{84B857F8-8CDF-413D-A4B3-D1517662C46A}.Release|Win32.Build.0 = Release|Win32
+		{778B79E4-8315-35D0-2BA7-0A42222ED7A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{778B79E4-8315-35D0-2BA7-0A42222ED7A5}.Debug|Win32.Build.0 = Debug|Win32
+		{778B79E4-8315-35D0-2BA7-0A42222ED7A5}.Release|Win32.ActiveCfg = Release|Win32
+		{778B79E4-8315-35D0-2BA7-0A42222ED7A5}.Release|Win32.Build.0 = Release|Win32
+		{411B6EA7-E5FB-B8B2-2C74-C712E16A6017}.Debug|Win32.ActiveCfg = Debug|Win32
+		{411B6EA7-E5FB-B8B2-2C74-C712E16A6017}.Debug|Win32.Build.0 = Debug|Win32
+		{411B6EA7-E5FB-B8B2-2C74-C712E16A6017}.Release|Win32.ActiveCfg = Release|Win32
+		{411B6EA7-E5FB-B8B2-2C74-C712E16A6017}.Release|Win32.Build.0 = Release|Win32
+		{753DE59B-D00B-FA0C-4F4D-28936C631030}.Debug|Win32.ActiveCfg = Debug|Win32
+		{753DE59B-D00B-FA0C-4F4D-28936C631030}.Debug|Win32.Build.0 = Debug|Win32
+		{753DE59B-D00B-FA0C-4F4D-28936C631030}.Release|Win32.ActiveCfg = Release|Win32
+		{753DE59B-D00B-FA0C-4F4D-28936C631030}.Release|Win32.Build.0 = Release|Win32
+		{51F1B18E-B2B5-0CD4-3E24-DD0BC485800C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51F1B18E-B2B5-0CD4-3E24-DD0BC485800C}.Debug|Win32.Build.0 = Debug|Win32
+		{51F1B18E-B2B5-0CD4-3E24-DD0BC485800C}.Release|Win32.ActiveCfg = Release|Win32
+		{51F1B18E-B2B5-0CD4-3E24-DD0BC485800C}.Release|Win32.Build.0 = Release|Win32
+		{65DF1036-A11C-0E0B-334C-BB385885A7C0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{65DF1036-A11C-0E0B-334C-BB385885A7C0}.Debug|Win32.Build.0 = Debug|Win32
+		{65DF1036-A11C-0E0B-334C-BB385885A7C0}.Release|Win32.ActiveCfg = Release|Win32
+		{65DF1036-A11C-0E0B-334C-BB385885A7C0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

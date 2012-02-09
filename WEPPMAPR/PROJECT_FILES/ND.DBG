@@ -1,0 +1,10 @@
+
+------------------- TRACEBACK -------------------------
+Module "Err  " Message   4: file ".\err.c   " line 1547
+Module "LBox " Message  -1: file ".\lboxdraw.c" line 971
+Module "Draw " Message  -1: file ".\drawinva.c" line 54
+Module "Event" Message  -1: file ".\event.c " line 2594
+Module "Appl " Message  -1: file "..\appl\appl.c" line 1842
+Module "Err  " Message  -1: file ".\err.c   " line 2009
+-------------------------------------------------------
+FATAL ERROR     Failure during error recovery

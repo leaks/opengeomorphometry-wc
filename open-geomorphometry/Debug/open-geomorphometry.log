@@ -1,0 +1,12 @@
+﻿Build started 2/9/2012 3:49:21 PM.
+     1>Project "E:\dev\open-geomorphometry-project\open-geomorphometry\open-geomorphometry.vcxproj" on node 6 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\open-geomorphometry.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       FinalizeBuildStatus:
+         Deleting file "Debug\open-geomorphometry.unsuccessfulbuild".
+         Touching "Debug\open-geomorphometry.lastbuildstate".
+     1>Done Building Project "E:\dev\open-geomorphometry-project\open-geomorphometry\open-geomorphometry.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.04

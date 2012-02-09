@@ -1,0 +1,6 @@
+Param.txt
+d:\prjs\weppmapr 4\project\
+a15
+-9999
+10
+300

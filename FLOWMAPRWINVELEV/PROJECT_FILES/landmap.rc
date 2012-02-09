@@ -1,0 +1,281 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\landmap.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\landmap.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About landmap"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "landmap Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2000",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_LANDMAP_DIALOG DIALOGEX 0, 0, 461, 357
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "FlowMapR C++ Version 2003 "
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_FILENAME,210,113,66,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_WORKING_DIRECTORY,209,130,144,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_ROW,210,147,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLUMN,210,164,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GSIZE,210,181,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MISSDATA,210,198,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PITAREA,210,215,50,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PITDEPTH,210,232,50,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Run",IDOK,103,325,50,14
+    PUSHBUTTON      "Close",IDCANCEL,283,325,50,14
+    LTEXT           "Name of dem file:",IDC_STATIC,20,115,150,8
+    LTEXT           "Total number of rows of DEM matrix:",IDC_STATIC,20,148,
+                    150,8
+    LTEXT           "Total number of columns of DEM matrix:",IDC_STATIC,20,
+                    165,150,8
+    LTEXT           "Grid size in meters:",IDC_STATIC,20,182,150,8
+    LTEXT           "Grid value for missing data:",IDC_STATIC,20,200,150,8
+    LTEXT           "Maximum area of pit to remove (suggest 10):",IDC_STATIC,
+                    20,217,150,8
+    LTEXT           "Maximum depth of pit to remove (suggest 0.15):",
+                    IDC_STATIC,20,233,150,8
+    LTEXT           "Working Directory:",IDC_STATIC,20,132,150,8
+    CTEXT           "FlowMapR C++ Version 2003 ",IDC_STATIC,67,15,327,14
+    LTEXT           "LandMapper Environmental Solutions Copyright © 2003\nOriginal program and algorithm development: Dr. R. A. MacMillan 1990-2003\nC++ Program conversion: GISmo Solutions Ltd., 2002-2003\nUnauthorized and unlicensed use of this program prohibited by law",
+                    IDC_STATIC,17,41,360,41
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",NOT 
+                    WS_VISIBLE | WS_BORDER,304,277,137,9
+    CONTROL         "Progress2",IDC_PROGRESS2,"msctls_progress32",WS_BORDER,
+                    128,292,314,9
+    LTEXT           "Current Process",IDC_STATIC_CURRENTPROCESS,17,277,283,
+                    10
+    LTEXT           "Overall Progress",IDC_STATIC,18,292,101,10
+    PUSHBUTTON      "/...",IDC_BUTTON_DEMFILE,276,113,13,12
+    PUSHBUTTON      "Cancel",IDC_BUTTON_Cancel,197,325,50,14
+    CONTROL         "Compute Inverted Elevation",IDC_CHECK_INVERTED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,321,148,109,11
+END
+
+IDD_PROGRESSBARDIALOG_DIALOG DIALOG DISCARDABLE  0, 0, 447, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Progress dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,121,135,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,233,136,50,14
+    CONTROL         "Progress1",IDC_PROGRESS_BAR2,"msctls_progress32",
+                    WS_BORDER,110,100,295,24
+    CONTROL         "Progress2",IDC_PROGRESS_BAR1,"msctls_progress32",
+                    WS_BORDER,110,65,295,24
+    LTEXT           "Current Process Progress",IDC_CURRENT_PROCESS,13,71,84,
+                    17
+    LTEXT           "Overall Progress",IDC_OVERALL_PROGRESS,13,104,88,17
+    LTEXT           "User Message",IDC_USER_MESSAGE,137,23,173,28
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "landmap MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "landmap\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "landmap.EXE\0"
+            VALUE "ProductName", "landmap Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_LANDMAP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 454
+        BOTTOMMARGIN, 349
+    END
+
+    IDD_PROGRESSBARDIALOG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 440
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 162
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About landmap..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\landmap.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

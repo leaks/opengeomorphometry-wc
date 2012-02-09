@@ -1,0 +1,9 @@
+Config.txt
+D:\LandMapper\Temp\
+613
+50
+250elev
+10
+10
+0.15
+-9999

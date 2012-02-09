@@ -1,0 +1,10 @@
+FacetParam.txt
+D:\LandMapper\LandMapper\COPY_OF_M1B\
+D:\LandMapper\LandMapper\COPY_OF_M1B\M1BDEM.DBF
+M1B
+D:\LandMapper\LandMapper\COPY_OF_M1B\M1Bform.dbf
+D:\LandMapper\LandMapper\COPY_OF_M1B\LM3ARULE.DBF
+D:\LandMapper\LandMapper\COPY_OF_M1B\LM3CRULE.DBF
+D:\LandMapper\LandMapper\COPY_OF_M1B\M1Brelz.dbf
+D:\LandMapper\LandMapper\COPY_OF_M1B\M1Bzone.dbf
+2

@@ -1,0 +1,247 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\facet.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\facet.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About facet"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "facet Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_FACET_DIALOG DIALOGEX 0, 0, 488, 294
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "FacetMapR C++ Version 2003 "
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Run",IDOK,135,267,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,199,267,50,14
+    EDITTEXT        IDC_EDIT_DEM,167,58,262,12,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_DEMFILE,429,58,13,12
+    LTEXT           "DEM file to use:",IDC_STATIC,17,61,126,12
+    CONTROL         "Progress1",IDC_PROGRESS_BAR,"msctls_progress32",NOT 
+                    WS_VISIBLE | WS_BORDER,336,225,134,9
+    CONTROL         "Progress1",IDC_PROGRESS_BAR_OVERALL,"msctls_progress32",
+                    WS_BORDER,164,245,306,9
+    LTEXT           "Overall Progress:",IDC_STATIC_OVERALL_PROGRESS,16,245,
+                    112,9
+    EDITTEXT        IDC_EDIT_FUZZY_ATTRIBUTES_FILE,167,74,262,12,
+                    ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_FUZZY_ATTRIBUTES_FILE,429,74,13,12
+    LTEXT           "Fuzzy attribute file:",IDC_STATIC,17,77,122,10
+    EDITTEXT        IDC_EDIT_FUZZY_FACETS,167,90,262,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_FUZZY_FACETS,429,90,13,12
+    GROUPBOX        "Select application to run:",IDC_STATIC,112,157,264,56
+    CONTROL         "The original LandMapR LSM program",IDC_RADIO_1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,119,168,213,11
+    CONTROL         "The new BC-PEM Direct-to-Site-Series DSS program",
+                    IDC_RADIO_2,"Button",BS_AUTORADIOBUTTON,119,180,189,11
+    CONTROL         "A new condensed version of the LandMapR LSM Program",
+                    IDC_RADIO_3,"Button",BS_AUTORADIOBUTTON,120,193,208,11
+    LTEXT           "Fuzzy facets file:",IDC_STATIC,17,93,124,10
+    EDITTEXT        IDC_EDIT_RELZFILE,167,106,262,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_RELZFILE,429,106,13,12,NOT WS_VISIBLE
+    LTEXT           "Relative relief and quinn wetness index:",IDC_STATIC,17,
+                    109,128,9,NOT WS_VISIBLE
+    LTEXT           "Form file:",IDC_STATIC,18,121,123,9,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_FORMFILE,167,120,262,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_FORMFILE,429,120,13,12,NOT WS_VISIBLE
+    LTEXT           "Current Process:",IDC_STATIC_CURRENTPROCESS,15,225,314,
+                    8
+    LTEXT           "Zone file:",IDC_STATIC,17,135,64,9,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_ZONEFILE,167,136,262,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "/...",IDC_BUTTON_ZONE,429,136,13,12,NOT WS_VISIBLE
+    PUSHBUTTON      "Close",IDC_BUTTON_CLOSE,258,267,50,14
+    LTEXT           "FacetMapR C++ Version 2003 ",IDC_STATIC,168,14,98,8
+    LTEXT           "LandMapper Environmental Solutions Copyright © 2003\nOriginal program and algorithm development: Dr. R. A. MacMillan 1990-2003\nC++ Program conversion: GISmo Solutions Ltd., 2002-2003\nUnauthorized and unlicensed use of this program prohibited by law",
+                    IDC_STATIC,15,25,395,25
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "facet MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "facet\0"
+            VALUE "LegalCopyright", "Copyright (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "facet.EXE\0"
+            VALUE "ProductName", "facet Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_FACET_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 481
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 287
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About facet..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\facet.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,7 @@
+Param.txt
+D:\LandMapper\Temp\New Folder\
+250
+-9999
+10
+300
+300
