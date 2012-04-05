@@ -74,6 +74,8 @@
     <ClInclude Include="..\include\DEMProcess.h" />
     <ClInclude Include="..\include\LandMap.h" />
     <ClInclude Include="..\include\landmapDlg.h" />
+    <ClInclude Include="..\include\landmapProcess.h" />
+    <ClInclude Include="..\include\landmapStructs.h" />
     <ClInclude Include="..\include\ProgressBarDialog.h" />
     <ClInclude Include="..\include\resource.h" />
     <ClInclude Include="..\include\Sort.h" />
@@ -87,6 +89,8 @@
     <ClCompile Include="..\source\DEMProcess.cpp" />
     <ClCompile Include="..\source\LandMap.cpp" />
     <ClCompile Include="..\source\LandMapDLG.cpp" />
+    <ClCompile Include="..\source\landmapProcess.cpp" />
+    <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\ProgressBarDialog.cpp" />
     <ClCompile Include="..\source\Sort.cpp" />
     <ClCompile Include="..\source\SortD.cpp" />
