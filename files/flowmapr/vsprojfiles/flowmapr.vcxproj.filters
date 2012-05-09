@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\DataFiles">
+      <UniqueIdentifier>{19a61f3b-2a33-4f5c-a87b-2d02e52b35e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataFiles">
+      <UniqueIdentifier>{3b4d1daf-51cd-442f-9f3f-70e6762ae419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{aec0a050-fc2d-4549-8eee-97e749a6b6f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{d9abe58e-58a0-4088-8c0a-c41704990688}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\DBFFile.h">
@@ -48,10 +60,43 @@
     <ClInclude Include="..\include\ProgressBarDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\landmapProcess.h">
+    <ClInclude Include="..\include\landmapStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\landmapStructs.h">
+    <ClInclude Include="..\include\DataFiles\DataReader.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DataFiles\DataWriter.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DataFiles\DataStructs.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DataFiles\CSVWriter.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DataFiles\CSVReader.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Utility\Util.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Utility\Settings.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Utility\Logger.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\LandmapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ThreadManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ThreadObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\LandmapThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -89,7 +134,28 @@
     <ClCompile Include="..\source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\landmapProcess.cpp">
+    <ClCompile Include="..\source\DataFiles\CSVWriter.cpp">
+      <Filter>Source Files\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DataFiles\CSVReader.cpp">
+      <Filter>Source Files\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Utility\Util.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Utility\Logger.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Utility\Settings.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\LandmapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ThreadManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\LandmapThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
