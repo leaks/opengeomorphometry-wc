@@ -19,13 +19,9 @@
 // Sort.h: interface for the CSort class.
 //
 //////////////////////////////////////////////////////////////////////
-#include <afxdisp.h>
-#if !defined(AFX_SORT_H__A8747610_B8EC_11D4_A9C8_0000B434B8D3__INCLUDED_)
-#define AFX_SORT_H__A8747610_B8EC_11D4_A9C8_0000B434B8D3__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+#ifndef SORT_H
+#define SORT_H
 
 //typedef	float	DATA_TYPE;
 //////////////////////////////////////////////////////////////////////////
@@ -218,5 +214,5 @@ private:
     //int        iter;
 };
 
-#endif // !defined(AFX_SORT_H__A8747610_B8EC_11D4_A9C8_0000B434B8D3__INCLUDED_)
+#endif // SORT_H
 

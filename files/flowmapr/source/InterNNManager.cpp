@@ -16,32 +16,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		DataReader.h
-//
-//
+//		InterNNManager.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
-//////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef DATA_READER_H
-#define DATA_READER_H
-
-#include "DataStructs.h"
-#include <string>
-#include <vector>
-
-class DataReader
-{
-public: // Constructors
-								DataReader(std::string filename):m_sFileName(filename) {};
-	virtual						~DataReader();
-
-public: // Public Methods
-	virtual std::vector<Record>	Read() = 0;
-
-protected: // Property Fields
-	std::string		m_sFileName;
-};
-
-#endif // DATA_READER_H
+#include "InterNNManager.h"

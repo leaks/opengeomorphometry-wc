@@ -20,6 +20,8 @@
 //
 //		Base class for thread management
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 //////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef THREAD_MANAGER_H
@@ -34,18 +36,17 @@ class ThreadManager
 {
 public: // Constructor
 					ThreadManager();
-	virtual			~ThreadManager();
+	virtual			~ThreadManager() {};
 
 public: // Public Methods
-	virtual void	start();
-	virtual void	stop();
+	virtual void	start() {};
+	virtual void	stop() {};
 
 protected:
 	virtual void	assignWork(int threadID) = 0;
 
-
 protected: // Property Methods
-	std::vector<ThreadObjects>	m_vtThreads;
+	//std::vector<ThreadObject>	m_vtThreads;
 	int							m_iMaxThreads;
 };
 

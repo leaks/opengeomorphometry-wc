@@ -16,8 +16,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-#include<fstream>
-
+#include <fstream>
+#include <string>
 //Class represents Mold and Vold tables
 //Use its functions to add and access values
 //It will grow as needed automaticaly.
@@ -45,7 +45,7 @@ class CVoldFile
 {
 public:
 	void RemoveAll();
-	CVoldFile(CString sFileName);
+	CVoldFile(std::string sFileName);
 	~CVoldFile();
 	void AddNew(int iSeqNoNew,int iDdirNew, int iDrecNew, int iUpSlopeNew, int iShedNowNew, 
 		int iStageNew, int iUrecNew = -1, int iDs_AreaNew = -1, double iVarationNew = -1);

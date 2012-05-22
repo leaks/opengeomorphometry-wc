@@ -18,8 +18,37 @@
 //
 //		LandmapManager.cpp
 //
+//		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
 #include "LandmapManager.h"
 
+LandmapManager::LandmapManager() : ThreadManager()
+{
+	for(int i = 0; i < m_iMaxThreads; i++)
+		m_vThreadPool.push_back(LandmapThread());
+}
+
+LandmapManager::~LandmapManager()
+{
+
+}
+
+void LandmapManager::start()
+{
+	for(std::vector<LandmapThread>::iterator iter = m_vThreadPool.begin(); iter != m_vThreadPool.end(); iter++)
+	{
+
+	}
+}
+
+void LandmapManager::stop()
+{
+
+}
+
+void LandmapManager::assignWork(int threadID, int start, int end)
+{
+
+}

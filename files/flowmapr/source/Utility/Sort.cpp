@@ -20,8 +20,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "landmap.h"
+//#include "stdafx.h"
+//#include "landmap.h"
 #include "Sort.h"
 
 #ifdef _DEBUG

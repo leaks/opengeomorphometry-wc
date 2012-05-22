@@ -20,6 +20,8 @@
 //
 //		Base object class for threading objects
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 //////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef THREAD_OBJECT_H
@@ -30,11 +32,11 @@
 class ThreadObject
 {
 public: // Constructor
-					ThreadObject();
-	virtual			~ThreadObject();
+					ThreadObject() {};
+	virtual			~ThreadObject() {};
 
 public: // Public Methods
-	virtual void	run() = 0;
+	virtual void	run() {};
 	virtual void	join() { m_tThread.join(); };
 
 protected: // Property fields

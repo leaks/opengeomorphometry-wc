@@ -16,32 +16,24 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		DataReader.h
+//		InterNNManager.h
 //
-//
+//		Thread manager for interpolating the file using Natural Neighbour
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
-//////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef DATA_READER_H
-#define DATA_READER_H
+#ifndef INTER_NN_MANAGER_H
+#define INTER_NN_MANAGER_H
 
-#include "DataStructs.h"
-#include <string>
-#include <vector>
+#include "ThreadManager.h"
 
-class DataReader
+class InterNNManager : public ThreadManager
 {
 public: // Constructors
-								DataReader(std::string filename):m_sFileName(filename) {};
-	virtual						~DataReader();
-
-public: // Public Methods
-	virtual std::vector<Record>	Read() = 0;
-
-protected: // Property Fields
-	std::string		m_sFileName;
+	InterNNManager();
+	~InterNNManager();
 };
 
-#endif // DATA_READER_H
+#endif // INTER_NN_MANAGER_H

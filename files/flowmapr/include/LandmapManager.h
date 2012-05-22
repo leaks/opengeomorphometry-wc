@@ -20,6 +20,8 @@
 //
 //		Setting file manager
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 //////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef LANDMAP_MANAGER_H
@@ -28,12 +30,26 @@
 #include "DataFiles\DataStructs.h"
 #include "DataFiles\CSVWriter.h"
 #include "DataFiles\CSVReader.h"
+#include "ThreadManager.h"
+#include "LandmapThread.h"
+#include <vector>
 
 class LandmapManager : public ThreadManager
 {
-public:
+public: // Constructors
 	LandmapManager();
 	~LandmapManager();
+
+public: // Public Methods
+	void	start();
+	void	stop();
+
+protected:
+	void	assignWork(int threadID, int start, int end);
+	
+private:
+	std::vector<LandmapThread>	m_vThreadPool;
+	double *					m_pdData;
 };
 
 #endif // LANDMAP_MANAGER_H

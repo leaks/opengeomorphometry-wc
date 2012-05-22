@@ -20,6 +20,8 @@
 //
 //		Thread instance for processing the file
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 /////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef LANDMAP_THREAD_H
@@ -30,9 +32,9 @@
 #include <math.h>
 #include <stdio.h>
 #include <vector>
-#include "VOLDFile.h"
+//#include "VOLDFile.h"
 #include "landmapStructs.h"
-#include "DEMProcess.h"
+//#include "DEMProcess.h"
 #include "Sort.h"
 #include "ThreadObject.h"
 

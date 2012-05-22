@@ -39,7 +39,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>..\include;..\resources;..\include\Utility;..\include\DataFiles;$(BOOST_HOME);$(IncludePath)</IncludePath>
     <OutDir>..\..\..\$(Configuration)\$(ProjectName)\</OutDir>
-    <SourcePath>..\source;$(SourcePath)</SourcePath>
+    <SourcePath>..\source;..\source\Utility;..\source\DataFiles;$(SourcePath)</SourcePath>
     <ExecutablePath>$(BOOST_HOME)\bin;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>$(BOOST_HOME)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -52,10 +52,13 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>..\..\..\$(Configuration)\$(ProjectName)\</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,53 +80,26 @@
     <ClInclude Include="..\include\DataFiles\DataReader.h" />
     <ClInclude Include="..\include\DataFiles\DataStructs.h" />
     <ClInclude Include="..\include\DataFiles\DataWriter.h" />
-    <ClInclude Include="..\include\DBFFile.h" />
-    <ClInclude Include="..\include\DEMProcess.h" />
-    <ClInclude Include="..\include\LandMap.h" />
-    <ClInclude Include="..\include\landmapDlg.h" />
     <ClInclude Include="..\include\LandmapManager.h" />
     <ClInclude Include="..\include\LandmapThread.h" />
     <ClInclude Include="..\include\landmapStructs.h" />
-    <ClInclude Include="..\include\ProgressBarDialog.h" />
-    <ClInclude Include="..\include\resource.h" />
     <ClInclude Include="..\include\Sort.h" />
-    <ClInclude Include="..\include\SortD.h" />
-    <ClInclude Include="..\include\STDAFX.H" />
-    <ClInclude Include="..\include\STRArray.h" />
     <ClInclude Include="..\include\ThreadManager.h" />
     <ClInclude Include="..\include\ThreadObject.h" />
     <ClInclude Include="..\include\Utility\Logger.h" />
     <ClInclude Include="..\include\Utility\Settings.h" />
     <ClInclude Include="..\include\Utility\Util.h" />
-    <ClInclude Include="..\include\VOLDFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\DataFiles\CSVReader.cpp" />
     <ClCompile Include="..\source\DataFiles\CSVWriter.cpp" />
-    <ClCompile Include="..\source\DBFFile.cpp" />
-    <ClCompile Include="..\source\DEMProcess.cpp" />
-    <ClCompile Include="..\source\LandMap.cpp" />
-    <ClCompile Include="..\source\LandMapDLG.cpp" />
     <ClCompile Include="..\source\LandmapManager.cpp" />
     <ClCompile Include="..\source\LandmapThread.cpp" />
     <ClCompile Include="..\source\main.cpp" />
-    <ClCompile Include="..\source\ProgressBarDialog.cpp" />
-    <ClCompile Include="..\source\Sort.cpp" />
-    <ClCompile Include="..\source\SortD.cpp" />
-    <ClCompile Include="..\source\STDAFX.CPP" />
-    <ClCompile Include="..\source\STRArray.cpp" />
     <ClCompile Include="..\source\ThreadManager.cpp" />
     <ClCompile Include="..\source\Utility\Logger.cpp" />
     <ClCompile Include="..\source\Utility\Settings.cpp" />
     <ClCompile Include="..\source\Utility\Util.cpp" />
-    <ClCompile Include="..\source\VOLDFile.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\res\landmap.ico" />
-    <None Include="..\res\LandMap.rc2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\landmap.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

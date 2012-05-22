@@ -18,6 +18,8 @@
 //
 //		LandmapThread.cpp
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 /////////////////////////////////////////////////////////////////////////////////////
 
 #include "LandmapThread.h"
@@ -50,7 +52,7 @@ LandmapThread::~LandmapThread()
 void LandmapThread::run()
 {
 	double		*pdElev = 0;
-	CDEMProcess	*pDEMProcess;
+//	CDEMProcess	*pDEMProcess;
 	double		*pdTmpDEMGrid;
 	double		*pdDEMGrid;
 	double		*pdBottomUp;

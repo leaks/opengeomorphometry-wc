@@ -20,6 +20,8 @@
 //
 //		Various structures for use in Landmap
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 /////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef LANDMAP_STRUCTURES_H

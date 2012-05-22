@@ -16,32 +16,28 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		DataReader.h
+//		InterNNThread.h
 //
-//
+//		Thread instance for interpolating the file using Natural Neighbour
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
-//////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef DATA_READER_H
-#define DATA_READER_H
+#ifndef INTER_NN_THREAD_H
+#define INTER_NN_THREAD_H
 
-#include "DataStructs.h"
-#include <string>
-#include <vector>
+#include "ThreadObject.h"
 
-class DataReader
+class InterNNThread : public ThreadObject
 {
-public: // Constructors
-								DataReader(std::string filename):m_sFileName(filename) {};
-	virtual						~DataReader();
+public:
+	InterNNThread();
+	~InterNNThread();
 
-public: // Public Methods
-	virtual std::vector<Record>	Read() = 0;
-
-protected: // Property Fields
-	std::string		m_sFileName;
+public:
+	void run();
+	
 };
 
-#endif // DATA_READER_H
+#endif // INTER_NN_THREAD_H

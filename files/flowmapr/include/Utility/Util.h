@@ -20,6 +20,8 @@
 //
 //		Various utility functions
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 /////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef UTIL_H
@@ -39,7 +41,7 @@ public:
 			std::string					implode(std::vector<std::string> data, std::string delim);
 			std::string					getTimestamp();
 protected:
-	Util();
+	Util(){};
 	~Util();
 private:
 	static Util* m_instance;

@@ -20,18 +20,23 @@
 //
 //		main application entry point for headless version.
 //
+//		Author: M Harrison mharrison@niagararesearch.org
+//
 /////////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 #include <string>
+#include "ThreadManager.h"
 #include "LandmapManager.h"
+#include "InterNNManager.h"
 #include "Utility\Settings.h"
 #include "Utility\Logger.h"
 
 // Main entry point
 int main(int argc, char *argv[])
 {
-	
+	LandmapManager *manager;
+
 	std::string param;
 	if( argc > 1)
 	{
@@ -63,6 +68,14 @@ int main(int argc, char *argv[])
 		}
 
 		//start the work manager
+		if(Settings::getSingleton()->getValue("input_type").compare("raw") == 0)
+		{
+
+		}
+		else if(Settings::getSingleton()->getValue("input_type").compare("interpolated") == 0 || Settings::getSingleton()->getValue("input_type").compare("grid") == 0)
+		{
+
+		}
 	}
 	else
 	{
