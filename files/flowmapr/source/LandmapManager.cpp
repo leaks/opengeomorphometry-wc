@@ -39,13 +39,16 @@ void LandmapManager::start()
 {
 	for(std::vector<LandmapThread>::iterator iter = m_vThreadPool.begin(); iter != m_vThreadPool.end(); iter++)
 	{
-
+		iter->start();	
 	}
 }
 
 void LandmapManager::stop()
 {
-
+	for(std::vector<LandmapThread>::interator iter = m_vThreadPool.begin(); iter != m_vThreadPool.end(); iter++)
+	{
+		
+	}
 }
 
 void LandmapManager::assignWork(int threadID, int start, int end)

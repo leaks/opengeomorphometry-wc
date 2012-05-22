@@ -38,6 +38,7 @@ public: // Constructor
 public: // Public Methods
 	virtual void	run() {};
 	virtual void	join() { m_tThread.join(); };
+	virtual void	start() {};
 
 protected: // Property fields
 	boost::thread	m_tThread;

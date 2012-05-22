@@ -49,6 +49,11 @@ LandmapThread::~LandmapThread()
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
+void LandmapThread::start()
+{
+	m_Thread = boost::thread(&LandmapThread::run, this);
+}
+
 void LandmapThread::run()
 {
 	double		*pdElev = 0;
