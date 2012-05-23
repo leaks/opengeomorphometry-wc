@@ -32,7 +32,6 @@
 #include "DataFiles\CSVReader.h"
 #include "ThreadManager.h"
 #include "LandmapThread.h"
-#include <vector>
 
 class LandmapManager : public ThreadManager
 {
@@ -43,13 +42,6 @@ public: // Constructors
 public: // Public Methods
 	void	start();
 	void	stop();
-
-protected:
-	void	assignWork(int threadID, int start, int end);
-	
-private:
-	std::vector<LandmapThread>	m_vThreadPool;
-	double *					m_pdData;
 };
 
 #endif // LANDMAP_MANAGER_H

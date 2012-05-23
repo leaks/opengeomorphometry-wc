@@ -38,6 +38,7 @@
 #include "Sort.h"
 #include "ThreadObject.h"
 #include "boost/thread.hpp"
+#include "boost/bind.hpp"
 
 class LandmapThread : public ThreadObject
 {
@@ -48,7 +49,8 @@ public: // Constructors
 public: // Public Methods
 	void			run();
 	void			run(std::vector<double> dataIn, std::vector<double> dataOut);
-	void			start();
+	//void			operator()();
+	void			operator()(std::vector<double>* dataIn, std::vector<double>* dataOut);
 
 public: // Property Methods
 	void			SetMissDataValue(double missDataValue);
@@ -69,7 +71,7 @@ private: // Property Fields
 	long			m_lPitArea;
 	double			m_dPitVolume;
 	bool			m_bInvertedElev;
-	boost::thread		m_Thread;
+
 }; //LandmapProcess
 
 #endif //LANDMAP_THREAD_H

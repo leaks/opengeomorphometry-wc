@@ -31,6 +31,7 @@
 #include "ThreadObject.h"
 #include "Settings.h"
 #include "boost/lexical_cast.hpp"
+#include "boost/thread.hpp"
 
 class ThreadManager
 {
@@ -42,12 +43,10 @@ public: // Public Methods
 	virtual void	start() {};
 	virtual void	stop() {};
 
-protected:
-	virtual void	assignWork(int threadID) = 0;
-
 protected: // Property Methods
 	//std::vector<ThreadObject>	m_vtThreads;
 	int							m_iMaxThreads;
+	boost::thread_group			m_tgThreadPool;
 };
 
 #endif // THREAD_MANAGER_H

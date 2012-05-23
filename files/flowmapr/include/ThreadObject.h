@@ -28,6 +28,7 @@
 #define THREAD_OBJECT_H
 
 #include "boost/thread.hpp"
+#include "boost/bind.hpp"
 
 class ThreadObject
 {
@@ -36,9 +37,7 @@ public: // Constructor
 	virtual			~ThreadObject() {};
 
 public: // Public Methods
-	virtual void	run() {};
-	virtual void	join() { m_tThread.join(); };
-	virtual void	start() {};
+	virtual void operator()() {};
 
 protected: // Property fields
 	boost::thread	m_tThread;

@@ -26,8 +26,7 @@
 
 LandmapManager::LandmapManager() : ThreadManager()
 {
-	for(int i = 0; i < m_iMaxThreads; i++)
-		m_vThreadPool.push_back(LandmapThread());
+
 }
 
 LandmapManager::~LandmapManager()
@@ -37,21 +36,26 @@ LandmapManager::~LandmapManager()
 
 void LandmapManager::start()
 {
-	for(std::vector<LandmapThread>::iterator iter = m_vThreadPool.begin(); iter != m_vThreadPool.end(); iter++)
+	CSVReader *reader = new CSVReader(Settings::getSingleton()->getValue("input_file_name"));
+	std::vector<Record> recs = reader->Read();
+	std::vector<double> dataIn;
+	std::vector<double> dataOut;
+
+	// grab the records from the CSV and dump the values from the rows into a vector
+	for(std::vector<Record>::iterator iter = recs.begin(); iter != recs.begin(); iter++)
 	{
-		iter->start();	
+		for(int i = 0; i < iter->fields; i++)
+		{
+			dataIn.push_back(iter->data[i]);
+		}
 	}
+
+	LandmapThread thread;
+	m_tgThreadPool.add_thread(boost::thread(&thread, &dataIn, &dataOut)*);
+
 }
 
 void LandmapManager::stop()
-{
-	for(std::vector<LandmapThread>::interator iter = m_vThreadPool.begin(); iter != m_vThreadPool.end(); iter++)
-	{
-		
-	}
-}
-
-void LandmapManager::assignWork(int threadID, int start, int end)
 {
 
 }
