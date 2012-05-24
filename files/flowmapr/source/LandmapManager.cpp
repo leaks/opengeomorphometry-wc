@@ -36,20 +36,8 @@ LandmapManager::~LandmapManager()
 
 void LandmapManager::start()
 {
-	CSVReader *reader = new CSVReader(Settings::getSingleton()->getValue("input_file_name"));
-	std::vector<Record> recs = reader->Read();
-	std::vector<double> dataIn;
-	std::vector<double> dataOut;
-
-	// grab the records from the CSV and dump the values from the rows into a vector
-	for(std::vector<Record>::iterator iter = recs.begin(); iter != recs.begin(); iter++)
-	{
-		for(int i = 0; i < iter->fields; i++)
-		{
-			dataIn.push_back(iter->data[i]);
-			dataOut.push_back(0); // esure the vectors are the same size/
-		}
-	}
+	std::vector<double> dataIn = getData();
+	std::vector<double> dataOut = dataIn; // ensure they're the same size 
 	
 	// find out how large the chunks are
 	int count = dataIn.size() / m_iMaxThreads;
@@ -72,4 +60,22 @@ void LandmapManager::start()
 void LandmapManager::stop()
 {
 
+}
+
+std::vector<double> LandmapManager::getData()
+{
+	std::vector<double> data;
+	CSVReader *reader = new CSVReader(Settings::getSingleton()->getValue("input_file_name"));
+	std::vector<Record> recs = reader->Read();
+	std::string inputType = Settings::getSingleton()->getValue("input_type");
+
+	// grab the records from the CSV and dump the values from the rows into a vector
+	for(std::vector<Record>::iterator iter = recs.begin(); iter != recs.begin(); iter++)
+	{
+		for(int i = 0; i < iter->fields; i++)
+		{
+			data.push_back(iter->data[i]);
+		}
+	}
+	return data;
 }
