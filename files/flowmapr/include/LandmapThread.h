@@ -50,7 +50,7 @@ public: // Public Methods
 	void			run();
 	void			run(std::vector<double> dataIn, std::vector<double> dataOut);
 	//void			operator()();
-	void			operator()(std::vector<double>* dataIn, std::vector<double>* dataOut);
+	void			operator()(std::vector<double>* dataIn, int startPos, int count, std::vector<double>* dataOut);
 
 public: // Property Methods
 	void			SetMissDataValue(double missDataValue);

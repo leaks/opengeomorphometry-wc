@@ -47,11 +47,25 @@ void LandmapManager::start()
 		for(int i = 0; i < iter->fields; i++)
 		{
 			dataIn.push_back(iter->data[i]);
+			dataOut.push_back(0); // esure the vectors are the same size/
 		}
 	}
+	
+	// find out how large the chunks are
+	int count = dataIn.size() / m_iMaxThreads;
+	int pos = 0;
 
+	// parcel out the data to the threads.
 	LandmapThread thread;
-	m_tgThreadPool.add_thread(boost::thread(&thread, &dataIn, &dataOut)*);
+	for(int i = 0; i < m_iMaxThreads; i++)
+	{
+		m_tgThreadPool.create_thread(boost::bind(&thread, &dataIn, pos, count, &dataOut));
+		pos += count;
+	}
+
+	//wait for execution to finish
+	m_tgThreadPool.join_all();
+
 
 }
 
