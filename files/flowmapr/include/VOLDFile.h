@@ -47,8 +47,7 @@ public:
 	void RemoveAll();
 	CVoldFile(std::string sFileName);
 	~CVoldFile();
-	void AddNew(int iSeqNoNew,int iDdirNew, int iDrecNew, int iUpSlopeNew, int iShedNowNew, 
-		int iStageNew, int iUrecNew = -1, int iDs_AreaNew = -1, double iVarationNew = -1);
+	void AddNew(int iSeqNoNew,int iDdirNew, int iDrecNew, int iUpSlopeNew, int iShedNowNew, int iStageNew, int iUrecNew = -1, int iDs_AreaNew = -1, double iVarationNew = -1);
 	int GetSeqNo(int nIndex);
 	int GetDdir(int nIndex);
 	int GetDrec(int nIndex);
@@ -67,5 +66,5 @@ private:
 	int nArraySize;
 
 protected:
-	CString sFileName;
+	std::string sFileName;
 };

@@ -20,18 +20,14 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "landmap.h"
+//#include "stdafx.h"
 #include "DEMProcess.h"
-#include "landmapDlg.h"
-#include <math.h>
-#include <malloc.h>
-#include <time.h>
+
 
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+//#define new DEBUG_NEW
 #endif
 
 //////////////////////////////////////////////////////////////////////
@@ -1158,8 +1154,8 @@ void CDEMProcess::ShedStat1(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 	int		iEndCol;
 	int		iPitCellNo;
 	bool	bOverSpill;
-	CFloatArray	*pfPondCellElev;
-	pfPondCellElev = new CFloatArray();
+	std::vector<double>	pfPondCellElev;
+	//pfPondCellElev = new CFloatArray();
 
 	bOverSpill = false;
 	i = piDEMSort[ii] / _iColumn;
@@ -1299,7 +1295,10 @@ void CDEMProcess::ShedStat1(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 			if (!bOverSpill)
 			{
 				pShedStat->iPondCell = pShedStat->iPondCell + 1;
-				pfPondCellElev->SetAtGrow(pShedStat->iPondCell, pfDEMGrid[piDEMSort[ii]]);
+				if(pShedStat->iPondCell < (int)pfPondCellElev.size())
+					pfPondCellElev[(pShedStat->iPondCell)] = pfDEMGrid[piDEMSort[ii]];
+				else
+					pfPondCellElev.push_back(pfDEMGrid[piDEMSort[ii]]);
 				ii++;
 			}
 			else
@@ -1326,10 +1325,10 @@ void CDEMProcess::ShedStat1(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 	}
 	pShedStat->fPitVol = 0.0;
 	for (iPitCellNo = 1; iPitCellNo <= pShedStat->iPitArea; iPitCellNo++)
-		pShedStat->fPitVol = pShedStat->fPitVol + (pShedStat->fPourElev - pfPondCellElev->GetAt(iPitCellNo));
+		pShedStat->fPitVol = pShedStat->fPitVol + (pShedStat->fPourElev - pfPondCellElev[iPitCellNo]);
 	
 	pShedStat->bDR_2_MV = drains_2_mv;
-	delete (pfPondCellElev);
+	//delete (pfPondCellElev);
 }
 
 
@@ -1544,8 +1543,8 @@ void CDEMProcess::ShedStat2(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 	int		iEndCol;
 	int		iPitCellNo;
 	bool	bOverSpill;
-	CFloatArray	*pfPondCellElev;
-	pfPondCellElev = new CFloatArray();
+	std::vector<double> pfPondCellElev;
+	//pfPondCellElev = new CFloatArray();
 
 	bOverSpill = false;
 	i = piDEMSort[ii] / _iColumn;
@@ -1667,7 +1666,10 @@ void CDEMProcess::ShedStat2(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 			if (!bOverSpill)
 			{
 				pShedStat->iPondCell = pShedStat->iPondCell + 1;
-				pfPondCellElev->SetAtGrow(pShedStat->iPondCell, pfDEMGrid[piDEMSort[ii]]);
+				if(pShedStat->iPondCell < (int)pfPondCellElev.size())
+					pfPondCellElev[pShedStat->iPondCell] = pfDEMGrid[piDEMSort[ii]];
+				else
+					pfPondCellElev.push_back(pfDEMGrid[piDEMSort[ii]]);
 				ii++;
 			}
 			else
@@ -1690,9 +1692,9 @@ void CDEMProcess::ShedStat2(int ii, int *piDEMSort, double *pfDEMGrid, short *pi
 	}
 	pShedStat->fPitVol = 0.0;
 	for (iPitCellNo = 1; iPitCellNo <= pShedStat->iPitArea; iPitCellNo++)
-		pShedStat->fPitVol = pShedStat->fPitVol + (pShedStat->fPourElev - pfPondCellElev->GetAt(iPitCellNo));
+		pShedStat->fPitVol = pShedStat->fPitVol + (pShedStat->fPourElev - pfPondCellElev[iPitCellNo]);
 
-	delete (pfPondCellElev);
+	//delete (pfPondCellElev);
 }
 
 void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondStats, double m_GridSize,
@@ -1701,7 +1703,7 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 								double* pfShed, double* pfBottomUp, int* piShedWGrid, int* piUpSlpGrid,
 								int* pDrecGrid, short* pFlowGrid, 
 								CVoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid,
-								int* pfPArea, short* piFlowGrid,CWnd* pWndNotifyProgress, CString* sMessage)
+								int* pfPArea, short* piFlowGrid)
 								//ptstPondStats is pointer to a pointer
 								//when array grows, we can realocate it, and the pointer that was passed into this
 								//function will point to the correct memory location after this function returns
@@ -1801,7 +1803,7 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 		nIndex=0;
 		for(nLoop = 0;nLoop<iPitNo;nLoop++)
 		{
-			if(nPondFileSize%1000==0 && nPondFileSize!=0)
+			if(nPondFileSize % 1000 == 0 && nPondFileSize!=0)
 			{
 				LSMPONDSTATS* pTemp = new LSMPONDSTATS [nPondFileSize + 1000];
 
@@ -1942,8 +1944,8 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 				if( pPondStats[nShedPointer].bRemoved ==false)//if a pit is allready removed, don't remove again
 				{
 					
-					sMessage->Format("Removing pit No %i.",pits_removed+1);
-					pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
+					//sMessage->Format("Removing pit No %i.",pits_removed+1);
+					//pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
 
 
 					pits_removed = pits_removed +1;
@@ -3154,8 +3156,7 @@ void CDEMProcess::LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSM
 							int& nFillFileSize,
 							double* pfDEMGrid,int*  piShedWGrid,int* piUpSlpGrid ,
 							CVoldFile& mold, short* piFlowGrid, int* piDrecGrid, double *pfVol2FlGrid,
-							double* pfMm2FlGrid, LSMPONDSTATS * pPondStats, CLandmapDlg* dlgProgressBar,
-							CWnd* pWndNotifyProgress, CString* sMessage)
+							double* pfMm2FlGrid, LSMPONDSTATS * pPondStats)
 {
 	/*
 	* procedure to remove pits in order of mm-2-flood and to re-compute 
@@ -3323,8 +3324,8 @@ void CDEMProcess::LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSM
 					//dlgProgressBar->UpdateData(FALSE);
 					curr_mm2flood = PitFile[nPitFilePointer].fVaratio;
 					Find_Low_Pit(PitFile,nPitFilePointer,iPitNo);
-					sMessage->Format("Removing pit No %i.",pits_removed+1);
-					pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
+					//sMessage->Format("Removing pit No %i.",pits_removed+1);
+					//pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
 					pits_removed = pits_removed + 1;
 					RemovePit8(mold,piFlowGrid,piDrecGrid,pfDEMGrid,piUpSlpGrid, piShedWGrid, pfBottomUp,&piDEMSort, 
 						piHeapTbl, &piTempSortedDEM);
@@ -4123,7 +4124,7 @@ void CDEMProcess::Final_Pits(LSMSTATVAR* PitFile, int& iPitNo, LSMSTATVAR** pTem
 
 void CDEMProcess::Lsm_PitR(double *pfDEMGrid, int *piDEMSort, LSMSTATVAR *pPit,  int* piShedWGrid,
 						   int* piUpSlpGrid,  int &iPitNo, short *piFlowGrid, int *piDrecGrid,
-						   int max_area, double max_depth, CLandmapDlg*		dlgProgressBar,CWnd* pWndNotifyProgress, CString* sMessage)
+						   int max_area, double max_depth)
 {
 	/*
 	* procedure to remove pits iteratively and selectively and to re-compute 
@@ -4213,7 +4214,7 @@ void CDEMProcess::Lsm_PitR(double *pfDEMGrid, int *piDEMSort, LSMSTATVAR *pPit, 
 	//**********
 
 
-	CString sUserMessage;
+	std::string sUserMessage;
 	int iNumPits = iPitNo;
 	int* nTemp = 0;
 	int* piHeapTbl = new int[_iRow*_iColumn];
@@ -4272,8 +4273,8 @@ void CDEMProcess::Lsm_PitR(double *pfDEMGrid, int *piDEMSort, LSMSTATVAR *pPit, 
 			
 
 			//sUserMessage.Format("Removing pit No %i out of %i",pits_removed+1, iNumPits);
-			sMessage->Format("Removing pit No %i.",pits_removed+1);
-			pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
+			//sMessage->Format("Removing pit No %i.",pits_removed+1);
+			//pWndNotifyProgress->PostMessage(WM_USER_RECALC_IN_PROGRESS,0,(long) sMessage);
 			
 			//dlgProgressBar->m_UserMessage = sUserMessage;
 			//dlgProgressBar->m_ProgressBar1.StepIt();

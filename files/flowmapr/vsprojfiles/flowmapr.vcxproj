@@ -80,6 +80,7 @@
     <ClInclude Include="..\include\DataFiles\DataReader.h" />
     <ClInclude Include="..\include\DataFiles\DataStructs.h" />
     <ClInclude Include="..\include\DataFiles\DataWriter.h" />
+    <ClInclude Include="..\include\DEMProcess.h" />
     <ClInclude Include="..\include\LandmapManager.h" />
     <ClInclude Include="..\include\LandmapThread.h" />
     <ClInclude Include="..\include\landmapStructs.h" />
@@ -89,10 +90,12 @@
     <ClInclude Include="..\include\Utility\Logger.h" />
     <ClInclude Include="..\include\Utility\Settings.h" />
     <ClInclude Include="..\include\Utility\Util.h" />
+    <ClInclude Include="..\include\VOLDFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\DataFiles\CSVReader.cpp" />
     <ClCompile Include="..\source\DataFiles\CSVWriter.cpp" />
+    <ClCompile Include="..\source\DEMProcess.cpp" />
     <ClCompile Include="..\source\LandmapManager.cpp" />
     <ClCompile Include="..\source\LandmapThread.cpp" />
     <ClCompile Include="..\source\main.cpp" />
@@ -100,6 +103,7 @@
     <ClCompile Include="..\source\Utility\Logger.cpp" />
     <ClCompile Include="..\source\Utility\Settings.cpp" />
     <ClCompile Include="..\source\Utility\Util.cpp" />
+    <ClCompile Include="..\source\VOLDFile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

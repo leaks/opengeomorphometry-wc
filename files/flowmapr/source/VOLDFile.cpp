@@ -21,13 +21,14 @@
 
 
 
-CVoldFile::CVoldFile(CString sNewFileName)
+CVoldFile::CVoldFile(std::string sNewFileName)
 {
 	nArraySize = 0;
 	nNumberOfRecords = 0;
 	pFile = 0;
 	sFileName = sNewFileName;
 }
+
 CVoldFile::~CVoldFile()
 {
 	/*

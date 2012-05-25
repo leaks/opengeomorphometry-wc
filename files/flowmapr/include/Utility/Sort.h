@@ -167,13 +167,13 @@ template <class T> bool QuickSort(T *pArr, int iSize, int *piOrder, bool bAscend
 			}
 
 		} catch (...) {
-			::SetLastError(ERROR_INVALID_PARAMETER);
-			rc = FALSE;
+			//::SetLastError(ERROR_INVALID_PARAMETER);
+			rc = false;
 		}
 
 	} else {
-		::SetLastError(ERROR_INVALID_PARAMETER);
-		rc = FALSE;
+		//::SetLastError(ERROR_INVALID_PARAMETER);
+		rc = false;
 	}
 	/*
 	finish = clock();

@@ -69,6 +69,12 @@
     <ClInclude Include="..\include\LandmapThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\DEMProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\VOLDFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\main.cpp">
@@ -89,13 +95,19 @@
     <ClCompile Include="..\source\Utility\Settings.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\LandmapManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\ThreadManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\LandmapThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\LandmapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DEMProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\VOLDFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
