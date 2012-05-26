@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 //This file is part of open-geomorphometry.
 //
 //    open-geomorphometry is free software: you can redistribute it and/or modify
@@ -68,13 +68,29 @@ std::vector<double> LandmapManager::getData()
 	CSVReader *reader = new CSVReader(Settings::getSingleton()->getValue("input_file_name"));
 	std::vector<Record> recs = reader->Read();
 	std::string inputType = Settings::getSingleton()->getValue("input_type");
-
-	// grab the records from the CSV and dump the values from the rows into a vector
-	for(std::vector<Record>::iterator iter = recs.begin(); iter != recs.begin(); iter++)
+	if(inputType.compare("grid")==0)
 	{
-		for(int i = 0; i < iter->fields; i++)
+		// grab the records from the CSV and dump the values from the rows into a vector
+		for(std::vector<Record>::iterator iter = recs.begin(); iter != recs.begin(); iter++)
 		{
-			data.push_back(iter->data[i]);
+			for(int i = 0; i < iter->fields; i++)
+			{
+				data.push_back(iter->data[i]);
+			}
+		}
+	}
+	else if(inputType.compare("column")==0)
+	{
+		for(std::vector<Record>::iterator iter = recs.begin(); iter != rec.end(); iter++)
+		{
+			data.push_back(iter->data[0];
+		}
+	}
+	else if(inputType.compare("latlong")==0)
+	{
+		for(std::vector<Record>::iterator iter = recs.begin(); iter != rec.end(); iter++)
+		{
+			data.push_back(iter->data[2];
 		}
 	}
 	return data;
