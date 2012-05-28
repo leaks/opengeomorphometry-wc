@@ -32,7 +32,7 @@
 #include "DataFiles\CSVReader.h"
 #include "ThreadManager.h"
 #include "LandmapThread.h"
-#include <vector.h>
+#include <vector>
 
 class LandmapManager : public ThreadManager
 {

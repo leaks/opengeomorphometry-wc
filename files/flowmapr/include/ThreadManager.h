@@ -42,11 +42,13 @@ public: // Constructor
 public: // Public Methods
 	virtual void	start() {};
 	virtual void	stop() {};
+	bool			isStarted() { return m_bStarted;}
 
 protected: // Property Methods
 	//std::vector<ThreadObject>	m_vtThreads;
 	int							m_iMaxThreads;
 	boost::thread_group			m_tgThreadPool;
+	bool						m_bStarted;
 };
 
 #endif // THREAD_MANAGER_H

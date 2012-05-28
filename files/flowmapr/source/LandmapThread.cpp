@@ -49,7 +49,7 @@ LandmapThread::~LandmapThread()
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
-void LandmapThread::operator()(std::vector<double>* dataIn, std::vector<double>* dataOut)
+void LandmapThread::operator()(std::vector<double>* dataIn, int startPos, int count, std::vector<double>* dataOut)
 {
 	double		*pdElev = 0;
 //	CDEMProcess	*pDEMProcess;
