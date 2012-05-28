@@ -16,39 +16,36 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.h
-//
-//
+//		TXTWriter.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_WRITER_H
-#define CSV_WRITER_H
+#include "TXTWriter.h"
 
-#include "DataWriter.h"
-#include "DataStructs.h"
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
-
-class CSVWriter : public DataWriter
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//		Public Methods
+//
+/////////////////////////////////////////////////////////////////////////////////////
+int TXTWriter::Write(std::vector<Record> data)
 {
-public: // Constructors
-					CSVWriter(std::string fileName) : DataWriter(fileName) {};
+	std::fstream fout (m_sFileName, std::fstream::out);
 
-public: // Public Methods
-	int				Write(std::vector<Record> data);
+	if(fout.fail())
+	{
+		if(fout.is_open())
+			fout.close();
+		return -1;
+	}
 
-private: // Private Methods
-	std::string		getLine(Record data);
-	
-private: // Property fields
-	std::string m_sDelim;
-};
+	for(std::vector<Record>::iterator iter = data.begin(); iter != data.end(); iter++)
+	{
+		fout << boost::lexical_cast<std::string>(iter->data[0]) << std::endl;
+	}
 
-#endif // CSV_WRITER_H
+	fout.close();
+
+	return data.size();
+}	

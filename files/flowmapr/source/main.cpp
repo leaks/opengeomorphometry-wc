@@ -45,15 +45,27 @@ int main(int argc, char *argv[])
 			param = std::string(argv[i]);
 			if(param.find("-f=") >= 0)
 			{
-				Settings::getSingleton()->setValue("input_file_name", param.substr(4));
+				Settings::getSingleton()->setValue("input_file_name", param.substr(3));
+			}
+			else if(param.find("--file=") >=0)
+			{
+				Settings::getSingleton()->setValue("input_file_name", param.substr(7));
 			}
 			else if(param.find("-c=") >= 0)
 			{
-				Settings::getSingleton()->setFileName(param.substr(4));
+				Settings::getSingleton()->setFileName(param.substr(3));
+			}
+			else if(param.find("--config=") >= 0)
+			{
+				Settings::getSingleton()->setFileName(param.substr(9));
 			}
 			else if(param.find("-t=") >= 0)
 			{
-				Settings::getSingleton()->setValue("input_type", param.substr(4));
+				Settings::getSingleton()->setValue("input_type", param.substr(3));
+			}
+			else if(param.find("--type=") >= 0)
+			{
+				Settings::getSingleton()->setValue("input_type", param.substr(7));
 			}
 			else if(param.find("-h") >= 0 || param.find("--help") >= 0)
 			{
@@ -61,9 +73,41 @@ int main(int argc, char *argv[])
 				std::cout << "USAGE STRING" << std::endl;
 				std::cout << "\t-h\t--help\t Prints this message." << std::endl;
 				std::cout << "\t-f\t--file\t Input file path." << std::endl;
+				std::cout << "\t-t\t--type\t Input file type." << std::endl;
+				std::cout << "\t-l\t--length\t Input grid length." << std::endl;
+				std::cout << "\t-w\t--width\t Input grid width." << std::endl;
 				std::cout << "\t-c\t--config\t Config file path (Optional)." << std::endl;
-				std::cout << "\t-t\t--type\t Input file type (Optional)." << std::endl;
+				std::cout << "\t-o\t--output-file\t Output file path (Optional)." << std::endl;
+				std::cout << "\t--seperator\t Deliminator for CSV (Optional)." << std::endl;
 				return 0;
+			}
+			else if(param.find("-l=") >=0)
+			{
+				Settings::getSingleton()->setValue("input_grid_length", param.substr(3));
+			}
+			else if(param.find("--length=") >=0)
+			{
+				Settings::getSingleton()->setValue("input_grid_length", param.substr(9));
+			}
+			else if(param.find("-w=") >=0)
+			{
+				Settings::getSingleton()->setValue("input_grid_width", param.substr(3));
+			}
+			else if(param.find("--width=") >=0)
+			{
+				Settings::getSingleton()->setValue("input_grid_width", param.substr(8));
+			}
+			else if(param.find("-o=") >=0)
+			{
+				Settings::getSingleton()->setValue("output_file_name", param.substr(3));
+			}
+			else if(param.find("--optput-file=") >=0)
+			{
+				Settings::getSingleton()->setValue("output_file_name", param.substr(14));
+			}
+			else if(param.find("--seperator") >=0)
+			{
+				Settings::getSingleton()->setValue("input_file_seperator", param.substr(11));
 			}
 		}
 
@@ -72,9 +116,9 @@ int main(int argc, char *argv[])
 		{
 
 		}
-		else if(Settings::getSingleton()->getValue("input_type").compare("interpolated") == 0 || Settings::getSingleton()->getValue("input_type").compare("grid") == 0)
+		else if(Settings::getSingleton()->getValue("input_type").compare("latlong") == 0 || Settings::getSingleton()->getValue("input_type").compare("grid") == 0)
 		{
-
+			manager->start();
 		}
 	}
 	else

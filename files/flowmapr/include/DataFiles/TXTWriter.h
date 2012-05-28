@@ -16,7 +16,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.h
+//		TXTWriter.h
 //
 //
 //
@@ -24,31 +24,27 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_WRITER_H
-#define CSV_WRITER_H
+#ifndef TXT_WRITER_H
+#define TXT_WRITER_H
 
 #include "DataWriter.h"
 #include "DataStructs.h"
+#include "Util.h"
+
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
+#include "boost/lexical_cast.hpp"
 
-class CSVWriter : public DataWriter
+class TXTWriter : public DataWriter
 {
 public: // Constructors
-					CSVWriter(std::string fileName) : DataWriter(fileName) {};
+					TXTWriter(std::string fileName) : DataWriter(fileName) {};
 
 public: // Public Methods
 	int				Write(std::vector<Record> data);
 
-private: // Private Methods
-	std::string		getLine(Record data);
-	
-private: // Property fields
-	std::string m_sDelim;
 };
 
-#endif // CSV_WRITER_H
+#endif // TXT_WRITER_H

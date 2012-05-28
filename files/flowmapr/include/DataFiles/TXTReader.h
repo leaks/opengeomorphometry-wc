@@ -16,7 +16,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.h
+//		TXTReader.h
 //
 //
 //
@@ -24,31 +24,29 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_WRITER_H
-#define CSV_WRITER_H
+#ifndef TXT_READER_H
+#define TXT_READER_H
 
-#include "DataWriter.h"
+#include "DataReader.h"
 #include "DataStructs.h"
+#include "Util.h"
+
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
+#include "boost/lexical_cast.hpp"
 
-class CSVWriter : public DataWriter
+class TXTReader : public DataReader
 {
 public: // Constructors
-					CSVWriter(std::string fileName) : DataWriter(fileName) {};
+						TXTReader(std::string fileName) : DataReader(fileName) {};
 
 public: // Public Methods
-	int				Write(std::vector<Record> data);
+	std::vector<Record>	Read();
 
 private: // Private Methods
-	std::string		getLine(Record data);
-	
-private: // Property fields
-	std::string m_sDelim;
+	Record				getData(std::string line);
 };
 
-#endif // CSV_WRITER_H
+#endif // TXT_READER_H

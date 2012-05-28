@@ -45,8 +45,10 @@ public: // Public Methods
 	std::vector<Record>			Read();
 
 private: // Private Methods
-
 	Record						getData(std::string line);
+
+private: // Property fields
+	std::string m_sDelim;
 };
 
 #endif // CSV_READER_H

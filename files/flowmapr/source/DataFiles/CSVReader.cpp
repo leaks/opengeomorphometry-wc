@@ -18,8 +18,6 @@
 //
 //		CSVReader.cpp
 //
-//
-//
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +61,7 @@ std::vector<Record> CSVReader::Read()
 Record CSVReader::getData(std::string line)
 {
 	Record rec;
-	std::vector<std::string> fields = Util::getSingleton()->explode(line, ",");
+	std::vector<std::string> fields = Util::getSingleton()->explode(line, m_sDelim);
 	double * dataArr = new double[fields.size()];
 	unsigned int count = 0;
 	for( std::vector<std::string>::iterator iter = fields.begin(); iter != fields.end(); iter++)

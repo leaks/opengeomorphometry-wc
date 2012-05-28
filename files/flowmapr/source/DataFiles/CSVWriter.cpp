@@ -18,8 +18,6 @@
 //
 //		CSVWriter.cpp
 //
-//
-//
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
@@ -65,5 +63,5 @@ std::string CSVWriter::getLine(Record data)
 	{
 		line.push_back(boost::lexical_cast<std::string>(data.data[i]));
 	}
-	return Util::getSingleton()->implode(line, ",");
+	return Util::getSingleton()->implode(line, m_sDelim);
 }

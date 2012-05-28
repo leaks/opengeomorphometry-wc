@@ -16,39 +16,57 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.h
-//
-//
+//		TXTReader.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_WRITER_H
-#define CSV_WRITER_H
+#include "TXTReader.h"
 
-#include "DataWriter.h"
-#include "DataStructs.h"
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
-
-class CSVWriter : public DataWriter
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//		Public Methods
+//
+/////////////////////////////////////////////////////////////////////////////////////
+std::vector<Record> TXTReader::Read()
 {
-public: // Constructors
-					CSVWriter(std::string fileName) : DataWriter(fileName) {};
+	std::vector<Record> data;
+	Record rec;
+	std::fstream fin(m_sFileName, std::fstream::in);
+	std::string line;
 
-public: // Public Methods
-	int				Write(std::vector<Record> data);
+	if(fin.fail())
+	{
+		if(fin.fail())
+		{
+			if(fin.is_open())
+				fin.close();
+			return data;
+		}
+	}
 
-private: // Private Methods
-	std::string		getLine(Record data);
-	
-private: // Property fields
-	std::string m_sDelim;
-};
+	while(!fin.eof())
+	{
+		std::getline(fin, line);
+		data.push_back(getData(line));
+	}
 
-#endif // CSV_WRITER_H
+	fin.close();
+	return data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//		Private Methods
+//
+/////////////////////////////////////////////////////////////////////////////////////
+Record TXTReader::getData(std::string line)
+{
+	Record rec;
+	double *dataArr = new double[1];
+	dataArr[0] = boost::lexical_cast<double>(line);
+	rec.fields = 1;
+	rec.data = dataArr;
+	return rec;
+}
