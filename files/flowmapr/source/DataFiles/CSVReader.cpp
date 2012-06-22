@@ -42,7 +42,8 @@ std::vector<Record> CSVReader::Read()
 			fin.close();
 		return data;
 	}
-
+	std::getline(fin, line);
+	
 	while(!fin.eof())
 	{
 		std::getline(fin, line);
@@ -50,6 +51,7 @@ std::vector<Record> CSVReader::Read()
 	}
 
 	fin.close();
+	
 	return data;
 }
 

@@ -27,7 +27,7 @@
 #ifndef LANDMAP_STRUCTURES_H
 #define LANDMAP_STRUCTURES_H
 
-typedef struct VoldFile
+typedef struct VoldFile_t
 {
 	int		iSeqNo;
 	int		iDdir;

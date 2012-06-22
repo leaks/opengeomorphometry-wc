@@ -23,9 +23,9 @@
 #ifndef DEM_PROCESS_H
 #define DEM_PROCESS_H
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+//#if _MSC_VER > 1000
+//#pragma once
+//#endif // _MSC_VER > 1000
 
 //#include "landmapDlg.h"
 //#include "landmapDlg.h"
@@ -41,10 +41,6 @@
 #include "Sort.h"
 //typedef CArray<double, double> CFloatArray;
 
-//#include "VoldFile.h"
-
-
-
 class CDEMProcess  
 {
 public:
@@ -57,18 +53,18 @@ public:
 	//void Lsm_PitR(double* pfDEMGrid,int* piDEMSort, LSMSTATVAR* pPitFile, int* piShedWGrid,int* piUpSlpGrid, int& iPitNo, short* piFlowGrid, int* piDrecGrid, int max_area, double max_depth, CLandmapDlg* dlgProgressBar, CWnd* pWndNotifyProgress, CString* sMessage);
 	void Lsm_PitR(double* pfDEMGrid,int* piDEMSort, LSMSTATVAR* pPitFile, int* piShedWGrid,int* piUpSlpGrid, int& iPitNo, short* piFlowGrid, int* piDrecGrid, int max_area, double max_depth);
 	//void LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSMSTATVAR** pFillFile,	int& nFillFileSize,	double* pfDEMGrid,int*  piShedWGrid,int* piUpSlpGrid, CVoldFile& mold, short* piFlowGrid, int* piDrecGrid,double* pfVol2FlGrid,double* pfMm2FlGrid,	LSMPONDSTATS * pPondStats, CLandmapDlg*	dlgProgressBar,	CWnd* pWndNotifyProgress, CString* sMessage);
-	void LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSMSTATVAR** pFillFile,	int& nFillFileSize,	double* pfDEMGrid,int*  piShedWGrid,int* piUpSlpGrid, CVoldFile& mold, short* piFlowGrid, int* piDrecGrid,double* pfVol2FlGrid,double* pfMm2FlGrid,	LSMPONDSTATS * pPondStats);
-	void Reset_Dem(CVoldFile& vold, short* piFlowGrid, int* piDrecGrid, int* pfUpSlpGrid, int* piShedWGrid, int* piShedGrid);
+	void LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSMSTATVAR** pFillFile,	int& nFillFileSize,	double* pfDEMGrid,int*  piShedWGrid,int* piUpSlpGrid, VoldFile& mold, short* piFlowGrid, int* piDrecGrid,double* pfVol2FlGrid,double* pfMm2FlGrid,	LSMPONDSTATS * pPondStats);
+	void Reset_Dem(VoldFile& vold, short* piFlowGrid, int* piDrecGrid, int* pfUpSlpGrid, int* piShedWGrid, int* piShedGrid);
 	void Fix_PitFile(LSMSTATVAR* ShedStat, double* pfDEMGrid, int* piShedNow, int iPitNo, int* piShedGrid);
 	int new_shed;
 	
 	void ShedStat3(int& new_pitrec, int& nPointer, int* pShedNow, int* piDEMSort, double* pfDEMGrid, LSMPONDSTATS** pPondStats, int* piUpSlpGrid, double* pondcell_elev, double* pfShed, int* piShedOrd, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid, int* pfPArea, short* piFlowGrid);
-	void Remove2Pit(LSMPONDSTATS* pPondStats,int& nPointer, int* piShedOrd, int iPitNo,int* pDirGrid, short* pFlowGrid, int* pUpSlpGrid, int* pShedNow, int** piDEMSort, CVoldFile& vold, double* pfBottomUp, double* pfDEMGrid, int& new_pitrec, bool& Ok_2_Remove, int*  piHeapTbl, int** piTempSortedDEM);
+	void Remove2Pit(LSMPONDSTATS* pPondStats,int& nPointer, int* piShedOrd, int iPitNo,int* pDirGrid, short* pFlowGrid, int* pUpSlpGrid, int* pShedNow, int** piDEMSort, VoldFile& vold, double* pfBottomUp, double* pfDEMGrid, int& new_pitrec, bool& Ok_2_Remove, int*  piHeapTbl, int** piTempSortedDEM);
 
 	void FindLast(LSMPONDSTATS*,int&, int, int* piShedOrd);
 
 	//void LowPitRemoval( LSMSTATVAR* ShedStat, LSMPONDSTATS** pPondStats, double m_GridSize,  int iPitNo, double* pfDEMGrid, int* piDEMSort, int* piShedOrd, double* pfShed, double* pfBottomUp,	int* piShedWGrid, int* piUpSlpGrid, int* pDrecGrid, short* pFlowGrid,CVoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid, int* pfPArea, short* piFlowGrid,CWnd* pWndNotifyProgress, CString* sMessage);
-	void LowPitRemoval( LSMSTATVAR* ShedStat, LSMPONDSTATS** pPondStats, double m_GridSize,  int iPitNo, double* pfDEMGrid, int* piDEMSort, int* piShedOrd, double* pfShed, double* pfBottomUp,	int* piShedWGrid, int* piUpSlpGrid, int* pDrecGrid, short* pFlowGrid,CVoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid, int* pfPArea, short* piFlowGrid);
+	void LowPitRemoval( LSMSTATVAR* ShedStat, LSMPONDSTATS** pPondStats, double m_GridSize,  int iPitNo, double* pfDEMGrid, int* piDEMSort, int* piShedOrd, double* pfShed, double* pfBottomUp,	int* piShedWGrid, int* piUpSlpGrid, int* pDrecGrid, short* pFlowGrid, VoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid, int* pfPArea, short* piFlowGrid);
 	CDEMProcess(int Row, int Column, double GridSize);
 	virtual ~CDEMProcess();
 	int		FlowDir(double *DEMGrid, short *FlowGrid);
@@ -103,7 +99,7 @@ protected:
 	void ShedStat8(int* piShedWGrid, double* pfDEMGrid, int* piDEMSort, int& nDEMPointer, int* UpSlpGrid,LSMSTATVAR** pFillFile, int& nFillFileSize, LSMSTATVAR *PitFile, int &iPitNo, double* Vol2Fld, double* Mm2Fl, double* pondcell_elev);
 	int new_pitrec;
 	double curr_mm2flood;
-	void RemovePit8( CVoldFile& mold, short* piFlowGrid, int* piDrecGrid, double* pfDEMGrid, int* piUpSlpGrid, int*  piShedWGrid, double* pfBottomUp, int** piDEMSort, int*  piHeapTbl, int** piTempSortedDEM);
+	void RemovePit8( VoldFile& mold, short* piFlowGrid, int* piDrecGrid, double* pfDEMGrid, int* piUpSlpGrid, int*  piShedWGrid, double* pfBottomUp, int** piDEMSort, int*  piHeapTbl, int** piTempSortedDEM);
 	void Find_Low_Pit(LSMSTATVAR *PitFile, int& nPitPointer, int iPitNo);
 	int pit2_end;
 	int pit1_end;

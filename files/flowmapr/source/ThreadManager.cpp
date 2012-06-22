@@ -26,6 +26,6 @@
 
 ThreadManager::ThreadManager()
 {
-	m_iMaxThreads = boost::lexical_cast<int>(Settings::getSingleton()->getValue("max_threads"));
+	m_iMaxThreads = Settings::getSingleton()->getValue<int>("max_threads");
 	m_bStarted = false;
 }

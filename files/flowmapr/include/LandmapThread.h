@@ -29,41 +29,59 @@
 
 #include <fstream>
 #include <string>
+#include <string.h> // memcpy
 #include <math.h>
 #include <stdio.h>
 #include <vector>
-//#include "VOLDFile.h"
+#include "VOLDFile.h"
 #include "landmapStructs.h"
-//#include "DEMProcess.h"
+#include "DEMProcess.h"
 #include "Sort.h"
 #include "ThreadObject.h"
+#include "Settings.h"
+#include "Logger.h"
+#include "DataFiles/DataStructs.h"
 #include "boost/thread.hpp"
 #include "boost/bind.hpp"
 
 class LandmapThread : public ThreadObject
 {
+public:
+	typedef struct param_t
+	{
+		std::vector<double> input;
+		std::vector<Record> pit;
+		std::vector<Record> fill;
+		std::vector<Record> pond;
+		std::vector<Record> vold;
+		std::vector<Record> mold;
+		std::vector<Record> dem;
+		std::vector<Record> idem;
+		std::vector<Record> ipit;
+	}PARAM_T;
+
 public: // Constructors
 					LandmapThread();
 					~LandmapThread();
 
 public: // Public Methods
 	void			run();
-	void			run(std::vector<double> dataIn, std::vector<double> dataOut);
+	void			run(param_t* data, int startPos, int count);
 	//void			operator()();
-	void			operator()(std::vector<double>* dataIn, int startPos, int count, std::vector<double>* dataOut);
+	void			operator()(param_t* data, int startPos, int count);
 
-public: // Property Methods
-	void			SetMissDataValue(double missDataValue);
-	void			SetPitDepth(double pitDepth);
-	void			SetPitArea(long pitArea);
-	void			SetPitVolume(double pitVolume);
-	void			SetInvertedElev(bool invertedElev);
-
-	double			GetMissDataValue();
-	double			GetPitDepth();
-	long			GetPitArea();
-	double			GetPitVolume();
-	bool			GetInvertedElev();
+//public: // Property Methods
+//	void			SetMissDataValue(double missDataValue);
+//	void			SetPitDepth(double pitDepth);
+//	void			SetPitArea(long pitArea);
+//	void			SetPitVolume(double pitVolume);
+//	void			SetInvertedElev(bool invertedElev);
+//
+//	double			GetMissDataValue();
+//	double			GetPitDepth();
+//	long			GetPitArea();
+//	double			GetPitVolume();
+//	bool			GetInvertedElev();
 
 private: // Property Fields
 	double			m_dMissDataValue;
@@ -71,6 +89,8 @@ private: // Property Fields
 	long			m_lPitArea;
 	double			m_dPitVolume;
 	bool			m_bInvertedElev;
+	int				m_iLength;
+	int				m_iWidth;
 
 }; //LandmapProcess
 

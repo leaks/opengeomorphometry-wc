@@ -47,7 +47,7 @@ int CSVWriter::Write(std::vector<Record> data)
 
 	fout.close();
 	
-	return data.size();
+	return (int)data.size();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////

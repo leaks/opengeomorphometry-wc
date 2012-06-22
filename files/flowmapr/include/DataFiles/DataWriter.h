@@ -35,7 +35,7 @@ class DataWriter
 {
 public: // Constructors
 				DataWriter(std::string fileName) : m_sFileName(fileName) {};
-	virtual		~DataWriter();
+	//virtual		~DataWriter();
 
 public: // Public Methods
 	virtual int Write(std::vector<Record> data) = 0;

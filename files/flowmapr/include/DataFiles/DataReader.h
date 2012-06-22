@@ -35,7 +35,7 @@ class DataReader
 {
 public: // Constructors
 								DataReader(std::string filename):m_sFileName(filename) {};
-	virtual						~DataReader();
+	//virtual						~DataReader();
 
 public: // Public Methods
 	virtual std::vector<Record>	Read() = 0;

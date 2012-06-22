@@ -46,6 +46,7 @@ public: // Public Methods
 
 private: // Private Methods
 	std::vector<double>	getData();
+	std::vector<Record> getRecords(std::vector<double> data, int fields = 1);
 };
 
 #endif // LANDMAP_MANAGER_H

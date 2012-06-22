@@ -16,37 +16,36 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
+
+#ifndef VOLD_FILE_H
+#define VOLD_FILE_H
+
 #include <fstream>
 #include <string>
+#include "landmapStructs.h"
 //Class represents Mold and Vold tables
 //Use its functions to add and access values
 //It will grow as needed automaticaly.
 
+//struct    VoldFileStructure
+//{
+//	int		iSeqNo;
+//	int		iDdir;
+//	int     iDrec;
+//	int     iUpslope;
+//	int     iShedNow;
+//	int     iStage;
+//	int     iUrec;
+//	int     iDs_Area;
+//	double   iVaration;
+//};
 
-
-struct    VoldFileStructure
-{
-	int		iSeqNo;
-	int		iDdir;
-	int     iDrec;
-	int     iUpslope;
-	int     iShedNow;
-	int     iStage;
-	int     iUrec;
-	int     iDs_Area;
-	double   iVaration;
-};
-
-
-
-
-
-class CVoldFile
+class VoldFile
 {
 public:
 	void RemoveAll();
-	CVoldFile(std::string sFileName);
-	~CVoldFile();
+	VoldFile(std::string sFileName);
+	~VoldFile();
 	void AddNew(int iSeqNoNew,int iDdirNew, int iDrecNew, int iUpSlopeNew, int iShedNowNew, int iStageNew, int iUrecNew = -1, int iDs_AreaNew = -1, double iVarationNew = -1);
 	int GetSeqNo(int nIndex);
 	int GetDdir(int nIndex);
@@ -60,11 +59,14 @@ public:
 
 	void RemoveAt(int nIndex);
 	int GetSize();
+
 private:
-	VoldFileStructure* pFile;
+	VoldFile_t* pFile;
 	int nNumberOfRecords;
 	int nArraySize;
 
 protected:
 	std::string sFileName;
 };
+
+#endif // VOLD_FILE_H

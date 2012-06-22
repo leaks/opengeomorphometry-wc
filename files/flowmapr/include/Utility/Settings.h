@@ -32,14 +32,19 @@
 #include <iostream>
 #include <fstream>
 #include "Util.h"
+#include "boost/lexical_cast.hpp"
 
 class Settings
 {
 public: // Public Methods
 	static	Settings*	getSingleton();
-	static	std::string	getValue(std::string key);
+	template <class T>
+	static	T			getValue(std::string key){return boost::lexical_cast<T>((m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second : "");};
+	template <>
+	static std::string	getValue<std::string>(std::string key){return (m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second : "";};
 	static	void		setValue(std::string key, std::string value);
 	static	void		setFileName(std::string fileName);
+	static	void		forceRead();
 
 protected: // Constructors
 						Settings();

@@ -47,10 +47,18 @@ Settings* Settings::getSingleton()
 	return m_pInstance;
 }
 
-std::string Settings::getValue(std::string key)
-{
-	return m_mSettings.find(key)->second;
-}
+// see header for implementation
+//template <class T>
+//T Settings::getValue(std::string key)
+//{
+//	return boost::lexical_cast<T>(m_mSettings.find(key)->second);
+//}
+//
+//template <>
+//std::string Settings::getValue<std::string>(std::string key)
+//{
+//	return m_mSettings.find(key)->second;
+//}
 
 void Settings::setValue(std::string key, std::string value)
 {
@@ -64,6 +72,11 @@ void Settings::setValue(std::string key, std::string value)
 void Settings::setFileName(std::string fileName)
 {
 	m_sFileName = fileName;
+}
+
+void Settings::forceRead()
+{
+	read();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -94,30 +107,34 @@ void Settings::read()
 
 	if(fin.fail())
 	{
+		
 		if(fin.is_open())
 			fin.close();
 		return;
 	}
-
-	while(!fin.eof())
+	else
 	{
-		std::getline(fin, line);
-		parseLine(line);
+		while(!fin.eof())
+		{
+			std::getline(fin, line);
+			if(line[0] != '#')
+				parseLine(line);
+		}
+		fin.close();
 	}
-	fin.close();
 }
 
 void Settings::write()
 {
 	for(std::map<std::string, std::string>::iterator iter = m_mSettings.begin(); iter != m_mSettings.end(); iter++)
 	{
-		writeLine(iter->first + ":" + iter->second);
+		writeLine(iter->first + "=" + iter->second);
 	}
 }
 
 void Settings::update(std::string key)
 {
-	writeLine(key + ":" + m_mSettings.find(key)->second);
+	writeLine(key + "=" + m_mSettings.find(key)->second);
 }
 
 void Settings::writeLine(std::string line)
@@ -135,6 +152,6 @@ void Settings::writeLine(std::string line)
 
 void Settings::parseLine(std::string line)
 {
-	int pos = line.find_first_of(':');
+	int pos = line.find_first_of('=');
 	m_mSettings.insert(std::pair<std::string, std::string>(line.substr(0, pos), line.substr(pos+1)));
 }

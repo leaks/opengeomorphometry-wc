@@ -1702,7 +1702,7 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 								double* pfDEMGrid, int* piDEMSort, int* piShedOrd,
 								double* pfShed, double* pfBottomUp, int* piShedWGrid, int* piUpSlpGrid,
 								int* pDrecGrid, short* pFlowGrid, 
-								CVoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid,
+								VoldFile& vold, int& nPondFileSize, double* pfVol2FlGrid, double* pfMm2FlGrid,
 								int* pfPArea, short* piFlowGrid)
 								//ptstPondStats is pointer to a pointer
 								//when array grows, we can realocate it, and the pointer that was passed into this
@@ -1878,8 +1878,7 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 		//Sorting of the pit file
 		for (i = 0; i < nPondFileSize; i++)
 		{
-			pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * pow(10.0, 10.0)) + 
-				(int)pPondStats[i].fVaratio);
+			pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * 10000000000) + (int)pPondStats[i].fVaratio); //replaced pow(10.0, 10.0)
 			piShedOrd[i] = i;
 		}
 
@@ -1971,8 +1970,7 @@ void CDEMProcess::LowPitRemoval( LSMSTATVAR* ShedStats, LSMPONDSTATS** ptstPondS
 	
 						for (i = 0; i < nPondFileSize; i++)
 						{
-							pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * pow(10.0, 10.0)) + 
-								(int)pPondStats[i].fVaratio);
+							pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * 10000000000.0) + (int)pPondStats[i].fVaratio); //replaced pow(10.0, 10.0)
 							piShedOrd[i] = i;
 						}
 
@@ -2167,7 +2165,7 @@ void CDEMProcess::FindLast(LSMPONDSTATS* pPondStats,int& nPointer, int iPitNo, i
 
 void CDEMProcess::Remove2Pit(LSMPONDSTATS* pPondStats,int& nPointer, int* piShedOrd, int iPitNo, int* pDirGrid,
 							 short* pFlowGrid, int* pUpSlpGrid, int* pShedNow, int** piDEMSort1, 
-							 CVoldFile& vold, double* pfBottomUp, double* pfDEMGrid,
+							 VoldFile& vold, double* pfBottomUp, double* pfDEMGrid,
 							 int& new_pitrec, bool& Ok_2_Remove,
 							 int*  piHeapTbl, int** piTempSortedDEM1)
 {
@@ -2943,15 +2941,13 @@ void CDEMProcess::AddStat3(LSMPONDSTATS ** pTempPondStats, int& nPondFileSize, d
 	// if yes, have to realocate more space for pfShed and piSHedOrd
 	for (i = 0; i < nPondFileSize; i++)
 	{
-		pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * pow(10.0, 10.0)) + 
-			(int)pPondStats[i].fVaratio);
+		pfShed[i] = (double)((((double)pPondStats[i].fPitElev) * 10000000000.0) + (int)pPondStats[i].fVaratio); //replaced pow(10.0, 10.0)
 		piShedOrd[i] = i;
 	}
 
 	QuickSort(pfShed, nPondFileSize, piShedOrd);
 	//***************************************************8
 	nPointer = 0;
-	
 }
 
 
@@ -3113,7 +3109,7 @@ void CDEMProcess::Fix_PitFile(LSMSTATVAR* ShedStat, double* pfDEMGrid, int* piSh
 
 }
 
-void CDEMProcess::Reset_Dem(CVoldFile& vold, short* piFlowGrid, int* piDrecGrid, int* piUpSlpGrid,
+void CDEMProcess::Reset_Dem(VoldFile& vold, short* piFlowGrid, int* piDrecGrid, int* piUpSlpGrid,
 							int* piShedWGrid, int* piShedGrid)
 {
 	/*
@@ -3155,7 +3151,7 @@ void CDEMProcess::Reset_Dem(CVoldFile& vold, short* piFlowGrid, int* piDrecGrid,
 void CDEMProcess::LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSMSTATVAR** pFillFile,
 							int& nFillFileSize,
 							double* pfDEMGrid,int*  piShedWGrid,int* piUpSlpGrid ,
-							CVoldFile& mold, short* piFlowGrid, int* piDrecGrid, double *pfVol2FlGrid,
+							VoldFile& mold, short* piFlowGrid, int* piDrecGrid, double *pfVol2FlGrid,
 							double* pfMm2FlGrid, LSMPONDSTATS * pPondStats)
 {
 	/*
@@ -3271,9 +3267,9 @@ void CDEMProcess::LSM_PitR8(int* piShedGrid,LSMSTATVAR* PitFile, int& iPitNo,LSM
 
 			if(!(pfDEMGrid[i]==dMissingValue))//make sure that field has valid value
 			{
-				pfBottomUp[nIndex] = (double)(((double)piShedWGrid[i] * pow(10.0, 18.0)) +
-							((double)pfDEMGrid[i] * pow(10.0, 12.0)) + 
-							(1000000.0 - (double)piUpSlpGrid[i]));
+				pfBottomUp[nIndex] = (double)(((double)piShedWGrid[i] * 1000000000000000000.0) +
+							((double)pfDEMGrid[i] * 1000000000000.0) + 
+							(1000000.0 - (double)piUpSlpGrid[i])); // removed pow(10.0, 18.0) and pow(10.0, 12.0)
 				piDEMSort[nIndex] = i;
 				nIndex++;
 
@@ -3564,7 +3560,7 @@ void CDEMProcess::Find_Low_Pit(LSMSTATVAR *PitFile, int& nPitPointer, int iPitNo
 	}
 }
 
-void CDEMProcess::RemovePit8(CVoldFile &mold, short *piFlowGrid, int *piDrecGrid, double *pfDEMGrid, int *piUpSlpGrid,
+void CDEMProcess::RemovePit8(VoldFile &mold, short *piFlowGrid, int *piDrecGrid, double *pfDEMGrid, int *piUpSlpGrid,
 							int*  piShedWGrid,double* pfBottomUp, int** piDEMSort1,
 							int* piHeapTbl,int** piTempSortedDEM1)
 {
@@ -4202,8 +4198,7 @@ void CDEMProcess::Lsm_PitR(double *pfDEMGrid, int *piDEMSort, LSMSTATVAR *pPit, 
 
 	for (i = 0; i < iPitNo; i++)
 	{
-		pfShed[i] = (double)(((20000-(double)pPit[i].fPitElev) * pow(10.0, 10.0)) + 
-			(int)pPit[i].fVaratio);
+		pfShed[i] = (double)(((20000-(double)pPit[i].fPitElev) * 10000000000.0) + (int)pPit[i].fVaratio); // removed pow(10.0, 10.0)
 		piShedOrd[i] = i;
 	}
 	//pSort = new CSort();
@@ -4297,8 +4292,7 @@ void CDEMProcess::Lsm_PitR(double *pfDEMGrid, int *piDEMSort, LSMSTATVAR *pPit, 
 			//Sorting of the pit file
 			for (i = 0; i < iPitNo; i++)
 			{
-				pfShed[i] = (double)(((20000 - (double)pPit[i].fPitElev) * pow(10.0, 10.0)) + 
-					(int)pPit[i].fVaratio);
+				pfShed[i] = (double)(((20000 - (double)pPit[i].fPitElev) * 10000000000.0) + 	(int)pPit[i].fVaratio);// removed pow(10.0, 10.0)
 				piShedOrd[i] = i;
 			}
 
@@ -4951,9 +4945,9 @@ void CDEMProcess::SortBottomUp(int *piShedWGrid, double *pfDEMGrid, int *piUpSlp
 			{
 				piShedWGrid[nLoop] = nNewShed;
 			}
-			pfBottomUp[nPartialArrayIndex] = (double)(((double) piShedWGrid[nLoop]* pow(10.0, 18.0)) +
-				((double) pfDEMGrid[nLoop] * pow(10.0, 12.0)) + 
-				(1000000.0 - (double)piUpSlpGrid[nLoop]));
+			pfBottomUp[nPartialArrayIndex] = (double)(((double) piShedWGrid[nLoop]* 1000000000000000000.0) +
+				((double) pfDEMGrid[nLoop] * 1000000000000.0) + 
+				(1000000.0 - (double)piUpSlpGrid[nLoop])); // replaced pow(10.0, 18.0) and pow(10.0, 12.0)
 			piHeapTbl[nPartialArrayIndex] = nLoop;
 			nPartialArrayIndex++;
 
@@ -5088,9 +5082,9 @@ void CDEMProcess::SortBottomUp2(int *piShedWGrid, double *pfDEMGrid, int *piUpSl
 			
 			piShedWGrid[nLoop] = nNewShed;
 			
-			pfBottomUp[nPartialArrayIndex] = (double)(((double) piShedWGrid[nLoop]* pow(10.0, 18.0)) +
-				((double) pfDEMGrid[nLoop] * pow(10.0, 12.0)) + 
-				(1000000.0 - (double)piUpSlpGrid[nLoop]));
+			pfBottomUp[nPartialArrayIndex] = (double)(((double) piShedWGrid[nLoop]* 1000000000000000000.0) +
+				((double) pfDEMGrid[nLoop] * 1000000000000) + 
+				(1000000.0 - (double)piUpSlpGrid[nLoop])); // replaced pow(10.0, 18.0) and pow(10.0, 12.0)
 			piHeapTbl[nPartialArrayIndex] = nLoop;
 			nPartialArrayIndex++;
 		}

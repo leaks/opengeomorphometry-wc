@@ -16,12 +16,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "VoldFile.h"
 
 
 
-CVoldFile::CVoldFile(std::string sNewFileName)
+VoldFile::VoldFile(std::string sNewFileName)
 {
 	nArraySize = 0;
 	nNumberOfRecords = 0;
@@ -29,7 +29,7 @@ CVoldFile::CVoldFile(std::string sNewFileName)
 	sFileName = sNewFileName;
 }
 
-CVoldFile::~CVoldFile()
+VoldFile::~VoldFile()
 {
 	/*
 	ofstream VoldFile(sFileName);
@@ -54,7 +54,7 @@ CVoldFile::~CVoldFile()
 	nNumberOfRecords = 0;
 }
 
-void CVoldFile::AddNew(int iSeqNoNew ,int iDdirNew, int iDrecNew, int iUpslopeNew ,
+void VoldFile::AddNew(int iSeqNoNew ,int iDdirNew, int iDrecNew, int iUpslopeNew ,
 					   int iShedNowNew , int iStageNew, int iUrecNew , int iDs_AreaNew,
 					   double iVarationNew)
 {
@@ -62,8 +62,8 @@ void CVoldFile::AddNew(int iSeqNoNew ,int iDdirNew, int iDrecNew, int iUpslopeNe
 	if(nArraySize== nNumberOfRecords)
 	{
 		int nOriginalSize =0;
-		VoldFileStructure* pTemp;
-		pTemp = new VoldFileStructure[nArraySize+15000];
+		VoldFile_t* pTemp;
+		pTemp = new VoldFile_t[nArraySize+15000];
 		nOriginalSize = nArraySize;
 		nArraySize = nArraySize + 15000;
 		for(int nLoop=0;nLoop<nOriginalSize;nLoop++)
@@ -88,56 +88,56 @@ void CVoldFile::AddNew(int iSeqNoNew ,int iDdirNew, int iDrecNew, int iUpslopeNe
 }
 
 
-int CVoldFile::GetDdir(int nIndex)
+int VoldFile::GetDdir(int nIndex)
 {
 	return pFile[nIndex].iDdir ;
 
 }
 
-int CVoldFile::GetDrec(int nIndex)
+int VoldFile::GetDrec(int nIndex)
 {
 	return pFile[nIndex].iDrec;
 }
 
 
-int CVoldFile::GetDs_Area(int nIndex)
+int VoldFile::GetDs_Area(int nIndex)
 {
 	return pFile[nIndex].iDs_Area;
 }
 
-int CVoldFile::GetSeqNo(int nIndex)
+int VoldFile::GetSeqNo(int nIndex)
 {
 	return pFile[nIndex].iSeqNo;
 }
 
 
-int CVoldFile::GetShedNow(int nIndex)
+int VoldFile::GetShedNow(int nIndex)
 {
 	return pFile[nIndex].iShedNow;
 }
 
-int CVoldFile::GetStage(int nIndex)
+int VoldFile::GetStage(int nIndex)
 {
 	return pFile[nIndex].iStage;
 }
 
-int CVoldFile::GetUpSlop(int nIndex)
+int VoldFile::GetUpSlop(int nIndex)
 {
 	return pFile[nIndex].iUpslope;
 }
 
-int CVoldFile::GetUrec(int nIndex)
+int VoldFile::GetUrec(int nIndex)
 {
 	return pFile[nIndex].iUrec;
 }
 
-double CVoldFile::GetVaration(int nIndex)
+double VoldFile::GetVaration(int nIndex)
 {
 	return pFile[nIndex].iVaration;
 }
 
 
-void CVoldFile::RemoveAt(int nIndex)
+void VoldFile::RemoveAt(int nIndex)
 {
 	if(nNumberOfRecords>nIndex)
 	{
@@ -150,12 +150,12 @@ void CVoldFile::RemoveAt(int nIndex)
 	}
 }
 
-int CVoldFile::GetSize()
+int VoldFile::GetSize()
 {
 	return nNumberOfRecords;
 }
 
-void CVoldFile::RemoveAll()
+void VoldFile::RemoveAll()
 {
 
 	delete pFile;

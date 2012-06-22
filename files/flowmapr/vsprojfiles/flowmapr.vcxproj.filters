@@ -75,6 +75,12 @@
     <ClInclude Include="..\include\VOLDFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\DataFiles\TXTReader.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DataFiles\TXTWriter.h">
+      <Filter>Header Files\DataFiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\main.cpp">
@@ -109,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="..\source\VOLDFile.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DataFiles\TXTReader.cpp">
+      <Filter>Source Files\DataFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DataFiles\TXTWriter.cpp">
+      <Filter>Source Files\DataFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -961,7 +961,7 @@ UINT RUN_PROCESS(LPVOID pParam)
 
 		
 		QuickSort(pfTmpDEMGrid, m_Row * m_Column-nMissingNum, piDEMSort,true); //sort only non missing values
-		free (pfTmpDEMGrid);
+		free (pfTmpDEMGrid); // should be a delete[]
 		nIndex = 0;
 		for(i=m_Row*m_Column-nMissingNum;i<m_Row*m_Column;i++) //make the rest of pointers which are
 			// pointing to the missing values, valid. 

@@ -50,7 +50,7 @@ Logger* Logger::getSingleton()
 
 void Logger::log(std::string msg)
 {
-	log(msg, m_eDefaultLogOptions);
+	log(msg, (LOG_OPTIONS)(m_eLogLevel | m_eDefaultLogOptions));
 }
 
 void Logger::log(std::string msg, LOG_OPTIONS opts)
@@ -60,12 +60,12 @@ void Logger::log(std::string msg, LOG_OPTIONS opts)
 		if((opts & m_eLogLevel) != DEBUG)
 			return;
 
-		if((opts & m_eLogLevel) == FILE_OUT)
+		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
 		{
 			writeLine(Util::getSingleton()->getTimestamp() + " DEBUG: " + msg);
 		}
 
-		if((opts & m_eLogLevel) == CONSOLE_OUT)
+		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
 		{
 			std::cout << Util::getSingleton()->getTimestamp() << " DEBUG: " << msg << std::endl;
 		}
@@ -75,12 +75,12 @@ void Logger::log(std::string msg, LOG_OPTIONS opts)
 		if((opts & m_eLogLevel) != INFO)
 			return;
 
-		if((opts & m_eLogLevel) == FILE_OUT)
+		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
 		{
 			writeLine(Util::getSingleton()->getTimestamp() + " INFO: " + msg);
 		}
 
-		if((opts & m_eLogLevel) == CONSOLE_OUT)
+		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
 		{
 			std::cout << Util::getSingleton()->getTimestamp() << " INFO: " << msg << std::endl;
 		}
@@ -90,12 +90,12 @@ void Logger::log(std::string msg, LOG_OPTIONS opts)
 		if((opts & m_eLogLevel) != WARNING)
 			return;
 
-		if((opts & m_eLogLevel) == FILE_OUT)
+		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
 		{
 			writeLine(Util::getSingleton()->getTimestamp() + " WARNING: " + msg);
 		}
 
-		if((opts & m_eLogLevel) == CONSOLE_OUT)
+		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
 		{
 			std::cout << Util::getSingleton()->getTimestamp() << " WARNING: " << msg << std::endl;
 		}
@@ -109,15 +109,15 @@ void Logger::log(std::string msg, LOG_OPTIONS opts)
 /////////////////////////////////////////////////////////////////////////////////////
 Logger::Logger()
 {
-	m_sFileName = Settings::getSingleton()->getValue("log_file");
+	m_sFileName = Settings::getSingleton()->getValue<std::string>("log_file");
 	if(m_sFileName.length() < 1)
 	{
 		m_sFileName = "log.txt";
 		Settings::getSingleton()->setValue("log_file", m_sFileName);
 	}
 
-	m_eDefaultLogOptions = (LOG_OPTIONS)boost::lexical_cast<int>(Settings::getSingleton()->getValue("log_default_options"));
-	m_eLogLevel = (LOG_OPTIONS)boost::lexical_cast<int>(Settings::getSingleton()->getValue("log_level"));
+	m_eDefaultLogOptions = (LOG_OPTIONS)Settings::getSingleton()->getValue<int>("log_default_options");
+	m_eLogLevel = (LOG_OPTIONS)Settings::getSingleton()->getValue<int>("log_level");
 }
 
 Logger::~Logger()
