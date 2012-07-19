@@ -987,8 +987,7 @@ int CDEMProcess::CircleFlow(short *piFlowGrid, int *piDrecGrid)
 	return iRet;
 }
 
-int CDEMProcess::CalcWaterShed(double *pfDEMGrid, short *piFlowGrid, int *piDrecGrid, 
-							   int *piShedGrid, int *piDEMSort)
+int CDEMProcess::CalcWaterShed(double *pfDEMGrid, short *piFlowGrid, int *piDrecGrid, int *piShedGrid, int *piDEMSort)
 {
 	/*
 	procedure to compute and assign an initial watershed number to every cell in a DEM data base  
@@ -1027,6 +1026,11 @@ int CDEMProcess::CalcWaterShed(double *pfDEMGrid, short *piFlowGrid, int *piDrec
 			{
 				if ((piShedGrid[iDrec] == 0) && (piFlowGrid[iDrec] != 5))
 				{
+					//if(iDrec != piDrecGrid[iDrec] - 1)
+					//	iDrec = piDrecGrid[iDrec] - 1;
+					//else
+					//	iDrec = piDrecGrid[iDrec] - 3;
+					// MH: Modified to temporarily avoid the infinite loop so I can Debug the rest of the program
 					iDrec = piDrecGrid[iDrec] - 1;
 					iNumDown++;
 				}

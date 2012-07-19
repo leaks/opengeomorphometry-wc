@@ -24,7 +24,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "Settings.h"
+#include "Utility/Settings.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -33,7 +33,7 @@
 /////////////////////////////////////////////////////////////////////////////////////
 Settings* Settings::m_pInstance = 0;
 std::string Settings::m_sFileName = "config.txt";
-std::map<std::string, std::string> Settings::m_mSettings;
+std::map<std::string, std::pair<std::string, bool>> Settings::m_mSettings;
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -60,12 +60,12 @@ Settings* Settings::getSingleton()
 //	return m_mSettings.find(key)->second;
 //}
 
-void Settings::setValue(std::string key, std::string value)
+void Settings::setValue(std::string key, std::string value, bool cmdLine)
 {
 	if(m_mSettings.count(key) > 0)
-		m_mSettings.find(key)->second == value;
+		m_mSettings.find(key)->second.first == value;
 	else
-		m_mSettings.insert(std::pair<std::string, std::string>(key,value));
+		m_mSettings.insert(std::pair<std::string, std::pair<std::string,bool>>(key, std::pair<std::string, bool>(value, cmdLine)));
 	update(key);
 }
 
@@ -117,7 +117,7 @@ void Settings::read()
 		while(!fin.eof())
 		{
 			std::getline(fin, line);
-			if(line[0] != '#')
+			if(line.length() > 0 && line[0] != '#')
 				parseLine(line);
 		}
 		fin.close();
@@ -126,15 +126,16 @@ void Settings::read()
 
 void Settings::write()
 {
-	for(std::map<std::string, std::string>::iterator iter = m_mSettings.begin(); iter != m_mSettings.end(); iter++)
+	for(std::map<std::string, std::pair<std::string, bool>>::iterator iter = m_mSettings.begin(); iter != m_mSettings.end(); iter++)
 	{
-		writeLine(iter->first + "=" + iter->second);
+		if(!iter->second.second)
+			writeLine(iter->first + "=" + iter->second.first);
 	}
 }
 
 void Settings::update(std::string key)
 {
-	writeLine(key + "=" + m_mSettings.find(key)->second);
+	writeLine(key + "=" + m_mSettings.find(key)->second.first);
 }
 
 void Settings::writeLine(std::string line)
@@ -153,5 +154,5 @@ void Settings::writeLine(std::string line)
 void Settings::parseLine(std::string line)
 {
 	int pos = line.find_first_of('=');
-	m_mSettings.insert(std::pair<std::string, std::string>(line.substr(0, pos), line.substr(pos+1)));
+	m_mSettings.insert(std::pair<std::string, std::pair<std::string, bool>>(line.substr(0, pos), std::pair<std::string, bool>(line.substr(pos+1), false)));
 }

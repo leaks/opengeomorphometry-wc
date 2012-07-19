@@ -38,7 +38,7 @@
 #include "VOLDFile.h"
 
 #define sqrt2 1.4142
-#include "Sort.h"
+#include "Utility/Sort.h"
 //typedef CArray<double, double> CFloatArray;
 
 class CDEMProcess  

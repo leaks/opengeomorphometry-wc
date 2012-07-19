@@ -16,57 +16,35 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		TXTReader.cpp
+//		TXTWriter.h
+//
+//
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "TXTReader.h"
+#ifndef TXT_WRITER_H
+#define TXT_WRITER_H
 
-/////////////////////////////////////////////////////////////////////////////////////
-//
-//		Public Methods
-//
-/////////////////////////////////////////////////////////////////////////////////////
-std::vector<Record> TXTReader::Read()
+#include "DataFiles/DataWriter.h"
+#include "DataFiles/DataStructs.h"
+#include "Utility/Util.h"
+
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "boost/lexical_cast.hpp"
+
+class TXTWriter : public DataWriter
 {
-	std::vector<Record> data;
-	Record rec;
-	std::fstream fin(m_sFileName, std::fstream::in);
-	std::string line;
+public: // Constructors
+					TXTWriter(std::string fileName) : DataWriter(fileName) {};
 
-	if(fin.fail())
-	{
-		if(fin.fail())
-		{
-			if(fin.is_open())
-				fin.close();
-			return data;
-		}
-	}
+public: // Public Methods
+	int				Write(std::vector<Record> data);
 
-	while(!fin.eof())
-	{
-		std::getline(fin, line);
-		data.push_back(getData(line));
-	}
+};
 
-	fin.close();
-	return data;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////
-//
-//		Private Methods
-//
-/////////////////////////////////////////////////////////////////////////////////////
-Record TXTReader::getData(std::string line)
-{
-	Record rec;
-	double *dataArr = new double[1];
-	dataArr[0] = boost::lexical_cast<double>(line);
-	rec.fields = 1;
-	rec.data = dataArr;
-	return rec;
-}
+#endif // TXT_WRITER_H

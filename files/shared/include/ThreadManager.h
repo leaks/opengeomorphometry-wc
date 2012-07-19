@@ -16,39 +16,39 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.h
+//		ThreadManager.h
 //
-//
+//		Base class for thread management
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_WRITER_H
-#define CSV_WRITER_H
+#ifndef THREAD_MANAGER_H
+#define THREAD_MANAGER_H
 
-#include "DataWriter.h"
-#include "DataStructs.h"
-#include <string>
 #include <vector>
-#include <iostream>
-#include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
+#include "ThreadObject.h"
+#include "Utility/Settings.h"
+#include "boost/lexical_cast.hpp"
+#include "boost/thread.hpp"
 
-class CSVWriter : public DataWriter
+class ThreadManager
 {
-public: // Constructors
-					CSVWriter(std::string fileName) : DataWriter(fileName) {};
+public: // Constructor
+					ThreadManager();
+	virtual			~ThreadManager() {};
 
 public: // Public Methods
-	int				Write(std::vector<Record> data);
+	virtual void	start() {};
+	virtual void	stop() {};
+	bool			isStarted() { return m_bStarted;}
 
-private: // Private Methods
-	std::string		getLine(Record data);
-	
-private: // Property fields
-	std::string m_sDelim;
+protected: // Property Methods
+	//std::vector<ThreadObject>	m_vtThreads;
+	int							m_iMaxThreads;
+	boost::thread_group			m_tgThreadPool;
+	bool						m_bStarted;
 };
 
-#endif // CSV_WRITER_H
+#endif // THREAD_MANAGER_H

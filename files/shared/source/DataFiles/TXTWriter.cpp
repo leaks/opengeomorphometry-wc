@@ -16,37 +16,36 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		TXTReader.h
-//
-//
+//		TXTWriter.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef TXT_READER_H
-#define TXT_READER_H
+#include "DataFiles/TXTWriter.h"
 
-#include "DataReader.h"
-#include "DataStructs.h"
-#include "Util.h"
-
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include "boost/lexical_cast.hpp"
-
-class TXTReader : public DataReader
+/////////////////////////////////////////////////////////////////////////////////////
+//
+//		Public Methods
+//
+/////////////////////////////////////////////////////////////////////////////////////
+int TXTWriter::Write(std::vector<Record> data)
 {
-public: // Constructors
-						TXTReader(std::string fileName) : DataReader(fileName) {};
+	std::fstream fout (m_sFileName, std::fstream::out);
 
-public: // Public Methods
-	std::vector<Record>	Read();
+	if(fout.fail())
+	{
+		if(fout.is_open())
+			fout.close();
+		return -1;
+	}
 
-private: // Private Methods
-	Record				getData(std::string line);
-};
+	for(std::vector<Record>::iterator iter = data.begin(); iter != data.end(); iter++)
+	{
+		fout << boost::lexical_cast<std::string>(iter->data[0]) << std::endl;
+	}
 
-#endif // TXT_READER_H
+	fout.close();
+
+	return (int)data.size();
+}	

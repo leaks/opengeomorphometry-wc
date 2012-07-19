@@ -16,50 +16,31 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		Logger.h
+//		ThreadObject.h
 //
-//		internal logging utility
+//		Base object class for threading objects
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef THREAD_OBJECT_H
+#define THREAD_OBJECT_H
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include "Util.h"
-#include "Settings.h"
-#include "boost/lexical_cast.hpp"
+#include "boost/thread.hpp"
+#include "boost/bind.hpp"
 
-enum LOG_OPTIONS{
-	FILE_OUT = 1,
-	CONSOLE_OUT = 2,
-	DEBUG = 16,
-	INFO = 32,
-	WARNING = 64
-};
-
-class Logger
+class ThreadObject
 {
-public:
-	static Logger * getSingleton();
-	static void		log(std::string msg);
-	static void		log(std::string msg, LOG_OPTIONS opts);
-protected:
-	Logger();
-	~Logger();
+public: // Constructor
+					ThreadObject() {};
+	virtual			~ThreadObject() {};
 
-private:
-	static void		writeLine(std::string line);
+public: // Public Methods
+	virtual void operator()() {};
 
-private:
-	static Logger*		m_pInstance;
-	static std::string	m_sFileName;
-	static LOG_OPTIONS	m_eDefaultLogOptions;
-	static LOG_OPTIONS	m_eLogLevel;
+protected: // Property fields
+	boost::thread	m_tThread;
 };
 
-#endif // LOGGER_H
+#endif // THREAD_OBJECT_H

@@ -16,36 +16,39 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		TXTWriter.cpp
+//		CSVReader.h
+//
+//
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "TXTWriter.h"
+#ifndef CSV_READER_H
+#define CSV_READER_H
 
-/////////////////////////////////////////////////////////////////////////////////////
-//
-//		Public Methods
-//
-/////////////////////////////////////////////////////////////////////////////////////
-int TXTWriter::Write(std::vector<Record> data)
+#include "DataFiles/DataReader.h"
+#include "DataFiles/DataStructs.h"
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "boost/lexical_cast.hpp"
+#include "Utility/Util.h"
+
+class CSVReader : public DataReader
 {
-	std::fstream fout (m_sFileName, std::fstream::out);
+public:	// Constructors
+								CSVReader(std::string fileName) : DataReader(fileName) {};
 
-	if(fout.fail())
-	{
-		if(fout.is_open())
-			fout.close();
-		return -1;
-	}
+public: // Public Methods
+	std::vector<Record>			Read();
 
-	for(std::vector<Record>::iterator iter = data.begin(); iter != data.end(); iter++)
-	{
-		fout << boost::lexical_cast<std::string>(iter->data[0]) << std::endl;
-	}
+private: // Private Methods
+	Record						getData(std::string line);
 
-	fout.close();
+private: // Property fields
+	std::string m_sDelim;
+};
 
-	return (int)data.size();
-}	
+#endif // CSV_READER_H

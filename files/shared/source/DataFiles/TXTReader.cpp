@@ -16,20 +16,20 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVReader.cpp
+//		TXTReader.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "CSVReader.h"
+#include "DataFiles/TXTReader.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
 //		Public Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-std::vector<Record> CSVReader::Read()
+std::vector<Record> TXTReader::Read()
 {
 	std::vector<Record> data;
 	Record rec;
@@ -38,12 +38,14 @@ std::vector<Record> CSVReader::Read()
 
 	if(fin.fail())
 	{
-		if(fin.is_open())
-			fin.close();
-		return data;
+		if(fin.fail())
+		{
+			if(fin.is_open())
+				fin.close();
+			return data;
+		}
 	}
-	std::getline(fin, line);
-	
+
 	while(!fin.eof())
 	{
 		std::getline(fin, line);
@@ -51,7 +53,6 @@ std::vector<Record> CSVReader::Read()
 	}
 
 	fin.close();
-	
 	return data;
 }
 
@@ -60,17 +61,12 @@ std::vector<Record> CSVReader::Read()
 //		Private Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-Record CSVReader::getData(std::string line)
+Record TXTReader::getData(std::string line)
 {
 	Record rec;
-	std::vector<std::string> fields = Util::getSingleton()->explode(line, m_sDelim);
-	double * dataArr = new double[fields.size()];
-	unsigned int count = 0;
-	for( std::vector<std::string>::iterator iter = fields.begin(); iter != fields.end(); iter++)
-	{
-		dataArr[count++] = boost::lexical_cast<double>(*iter);
-	}
-	rec.fields = fields.size();
+	double *dataArr = new double[1];
+	dataArr[0] = boost::lexical_cast<double>(line);
+	rec.fields = 1;
 	rec.data = dataArr;
 	return rec;
 }

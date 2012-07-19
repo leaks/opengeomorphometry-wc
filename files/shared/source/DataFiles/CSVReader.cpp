@@ -16,38 +16,43 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVWriter.cpp
+//		CSVReader.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "CSVWriter.h"
+#include "DataFiles/CSVReader.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
 //		Public Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-int CSVWriter::Write(std::vector<Record> data)
+std::vector<Record> CSVReader::Read()
 {
-	std::fstream fout (m_sFileName, std::fstream::out);
+	std::vector<Record> data;
+	Record rec;
+	std::fstream fin(m_sFileName, std::fstream::in);
+	std::string line;
 
-	if(fout.fail())
+	if(fin.fail())
 	{
-		if(fout.is_open())
-			fout.close();
-		return -1;
+		if(fin.is_open())
+			fin.close();
+		return data;
 	}
-
-	for(std::vector<Record>::iterator iter = data.begin(); iter != data.end(); iter++)
-	{
-		fout << getLine(*iter) << std::endl;
-	}
-
-	fout.close();
+	std::getline(fin, line);
 	
-	return (int)data.size();
+	while(!fin.eof())
+	{
+		std::getline(fin, line);
+		data.push_back(getData(line));
+	}
+
+	fin.close();
+	
+	return data;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -55,13 +60,17 @@ int CSVWriter::Write(std::vector<Record> data)
 //		Private Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-std::string CSVWriter::getLine(Record data)
+Record CSVReader::getData(std::string line)
 {
-	std::vector<std::string> line;
-	
-	for(int i = 0; i < data.fields; i++)
+	Record rec;
+	std::vector<std::string> fields = Util::getSingleton()->explode(line, m_sDelim);
+	double * dataArr = new double[fields.size()];
+	unsigned int count = 0;
+	for( std::vector<std::string>::iterator iter = fields.begin(); iter != fields.end(); iter++)
 	{
-		line.push_back(boost::lexical_cast<std::string>(data.data[i]));
+		dataArr[count++] = boost::lexical_cast<double>(*iter);
 	}
-	return Util::getSingleton()->implode(line, m_sDelim);
+	rec.fields = fields.size();
+	rec.data = dataArr;
+	return rec;
 }

@@ -45,29 +45,35 @@ int main(int argc, char *argv[])
 			param = std::string(argv[i]);
 			if(param.find("-f=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_name", param.substr(3));
+				Settings::getSingleton()->setValue("input_file_name", param.substr(3), true);
+				Logger::getSingleton()->log("input_file_name: " + param.substr(3), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("--file=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_name", param.substr(7));
+				Settings::getSingleton()->setValue("input_file_name", param.substr(7), true);
+				Logger::getSingleton()->log("input_file_name: " + param.substr(7), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("-c=") != std::string::npos)
 			{
 				Settings::getSingleton()->setFileName(param.substr(3));
 				Settings::getSingleton()->forceRead();
+				Logger::getSingleton()->log("settings_file: " + param.substr(3), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("--config=") != std::string::npos)
 			{
 				Settings::getSingleton()->setFileName(param.substr(9));
 				Settings::getSingleton()->forceRead();
+				Logger::getSingleton()->log("settings_file: " + param.substr(9), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("-t=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_type", param.substr(3));
+				Settings::getSingleton()->setValue("input_type", param.substr(3), true);
+				Logger::getSingleton()->log("input_type: " + param.substr(3), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("--type=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_type", param.substr(7));
+				Settings::getSingleton()->setValue("input_type", param.substr(7), true);
+				Logger::getSingleton()->log("input_type: " + param.substr(7), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("-h") != std::string::npos || param.find("--help") != std::string::npos)
 			{
@@ -88,43 +94,56 @@ int main(int argc, char *argv[])
 			}
 			else if(param.find("-l=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_length", param.substr(3));
+				Settings::getSingleton()->setValue("input_file_length", param.substr(3), true);
+				Logger::getSingleton()->log("input_file_length: " + param.substr(3), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("--length=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_length", param.substr(9));
+				Settings::getSingleton()->setValue("input_file_length", param.substr(9), true);
+				Logger::getSingleton()->log("input_file_length: " + param.substr(9), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("-w=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_width", param.substr(3));
+				Settings::getSingleton()->setValue("input_file_width", param.substr(3), true);
+				Logger::getSingleton()->log("input_file_width: " + param.substr(3), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("--width=") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_width", param.substr(8));
+				Settings::getSingleton()->setValue("input_file_width", param.substr(8), true);
+				Logger::getSingleton()->log("input_file_width: " + param.substr(8), LOG_OPTIONS::DEBUG);
 			}
 			else if(param.find("-o=") != std::string::npos)
 			{
 				if(param[param.length() - 4] == '.')
 				{
-					Settings::getSingleton()->setValue("output_file_name", param.substr(3, param.length() - 7));
-					Settings::getSingleton()->setValue("output_file_type", param.substr(param.length() - 7));
+					Settings::getSingleton()->setValue("output_file_name", param.substr(3, param.length() - 7), true);
+					Settings::getSingleton()->setValue("output_file_type", param.substr(param.length() - 7), true);
+					Logger::getSingleton()->log("output_file_name: " + param.substr(3, param.length() -7) + ", output_file_type: " + param.substr(param.length() - 7), LOG_OPTIONS::DEBUG);
 				}
 				else
-					Settings::getSingleton()->setValue("output_file_name", param.substr(3));
+				{
+					Settings::getSingleton()->setValue("output_file_name", param.substr(3), true);
+					Logger::getSingleton()->log("output_file_name: " + param.substr(3), LOG_OPTIONS::DEBUG);
+				}
 			}
 			else if(param.find("--optput-file=") != std::string::npos)
 			{
 				if(param[param.length() - 4] == '.')
 				{
-					Settings::getSingleton()->setValue("output_file_name", param.substr(14, param.length() - 18));
-					Settings::getSingleton()->setValue("output_file_type", param.substr(param.length() - 18));
+					Settings::getSingleton()->setValue("output_file_name", param.substr(14, param.length() - 18), true);
+					Settings::getSingleton()->setValue("output_file_type", param.substr(param.length() - 18), true);
+					Logger::getSingleton()->log("output_file_name: " + param.substr(14, param.length() - 18) + ", output_file_type" + param.substr(param.length() - 18), LOG_OPTIONS::DEBUG);
 				}
 				else
-					Settings::getSingleton()->setValue("output_file_name", param.substr(14));
+				{
+					Settings::getSingleton()->setValue("output_file_name", param.substr(14), true);
+					Logger::getSingleton()->log("output_file_name: " + param.substr(14), LOG_OPTIONS::DEBUG);
+				}
 			}
 			else if(param.find("--seperator") != std::string::npos)
 			{
-				Settings::getSingleton()->setValue("input_file_seperator", param.substr(11));
+				Settings::getSingleton()->setValue("input_file_seperator", param.substr(11), true);
+				Logger::getSingleton()->log("input_file_seperator: " + param.substr(11), LOG_OPTIONS::DEBUG);
 			}
 		}
 

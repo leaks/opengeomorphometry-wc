@@ -66,6 +66,7 @@ void LandmapManager::start()
 	//}
 	
 	// parcel out the data to the threads.
+	Logger::getSingleton()->log("Starting Threads.", LOG_OPTIONS::INFO);
 	LandmapThread thread;
 	for(int i = 0; i < m_iMaxThreads; i++)
 	{
@@ -84,34 +85,45 @@ void LandmapManager::start()
 
 	//delete(txtWriter);
 
+	//output data to files
+	Logger::getSingleton()->log("Outputting data.", LOG_OPTIONS::INFO);
+
+	Logger::getSingleton()->log("Outputting DEM.", LOG_OPTIONS::DEBUG);
 	CSVWriter *csvWriter = new CSVWriter(outFileName + "-dem." + outFileType);
 	csvWriter->Write(data.dem);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Fill.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-fill." + outFileType);
 	csvWriter->Write(data.fill);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Pit.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-pit." + outFileType);
 	csvWriter->Write(data.pit);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Pond.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-pond." + outFileType);
 	csvWriter->Write(data.pond);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Mold.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-mold." + outFileType);
 	csvWriter->Write(data.mold);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Vold.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-vold." + outFileType);
 	csvWriter->Write(data.vold);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Inverted DEM.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-idem." + outFileType);
 	csvWriter->Write(data.idem);
 	delete(csvWriter);
 
+	Logger::getSingleton()->log("Outputting Inverted Pit.", LOG_OPTIONS::DEBUG);
 	csvWriter = new CSVWriter(outFileName + "-ipit." + outFileType);
 	csvWriter->Write(data.ipit);
 	delete(csvWriter);
@@ -128,6 +140,7 @@ std::vector<double> LandmapManager::getData()
 	
 	std::vector<Record> recs;// = reader->Read();
 	std::string inputType = Settings::getSingleton()->getValue<std::string>("input_type");
+	Logger::getSingleton()->log("Loading data from " + Settings::getSingleton()->getValue<std::string>("input_file_name") + ".", LOG_OPTIONS::INFO);
 	if(inputType.compare("grid")==0)
 	{
 		CSVReader *reader = new CSVReader(Settings::getSingleton()->getValue<std::string>("input_file_name"));

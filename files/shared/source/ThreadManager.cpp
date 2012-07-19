@@ -16,39 +16,16 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		CSVReader.h
-//
-//
+//		ThreadManager.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef CSV_READER_H
-#define CSV_READER_H
+#include "ThreadManager.h"
 
-#include "DataReader.h"
-#include "DataStructs.h"
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include "boost\lexical_cast.hpp"
-#include "Util.h"
-
-class CSVReader : public DataReader
+ThreadManager::ThreadManager()
 {
-public:	// Constructors
-								CSVReader(std::string fileName) : DataReader(fileName) {};
-
-public: // Public Methods
-	std::vector<Record>			Read();
-
-private: // Private Methods
-	Record						getData(std::string line);
-
-private: // Property fields
-	std::string m_sDelim;
-};
-
-#endif // CSV_READER_H
+	m_iMaxThreads = Settings::getSingleton()->getValue<int>("max_threads");
+	m_bStarted = false;
+}

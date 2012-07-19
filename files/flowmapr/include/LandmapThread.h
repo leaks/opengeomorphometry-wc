@@ -36,10 +36,10 @@
 #include "VOLDFile.h"
 #include "landmapStructs.h"
 #include "DEMProcess.h"
-#include "Sort.h"
+#include "Utility/Sort.h"
 #include "ThreadObject.h"
-#include "Settings.h"
-#include "Logger.h"
+#include "Utility/Settings.h"
+#include "Utility/Logger.h"
 #include "DataFiles/DataStructs.h"
 #include "boost/thread.hpp"
 #include "boost/bind.hpp"
@@ -91,6 +91,9 @@ private: // Property Fields
 	bool			m_bInvertedElev;
 	int				m_iLength;
 	int				m_iWidth;
+	static int		m_siPitCount;
+	static int		m_siShedCount;
+	boost::mutex	m_muLock;
 
 }; //LandmapProcess
 

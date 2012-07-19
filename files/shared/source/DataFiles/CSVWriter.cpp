@@ -16,80 +16,52 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		Util.cpp
-//
-//		Various utility functions
+//		CSVWriter.cpp
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
-/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
-#include "Util.h"
-
-Util* Util::m_instance = 0;
+#include "DataFiles/CSVWriter.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
 //		Public Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-Util * Util::getSingleton()
+int CSVWriter::Write(std::vector<Record> data)
 {
-	if(!m_instance)
-		m_instance = new Util();
-	return m_instance;
-}
+	std::fstream fout (m_sFileName, std::fstream::out);
 
-std::vector<std::string> Util::explode(std::string line, std::string delim)
-{
-	std::vector<std::string> data;
-
-	if(line.find(delim) == -1)
+	if(fout.fail())
 	{
-		data.push_back(line);
+		if(fout.is_open())
+			fout.close();
+		return -1;
 	}
-	else
+
+	for(std::vector<Record>::iterator iter = data.begin(); iter != data.end(); iter++)
 	{
-		boost::tokenizer<boost::escaped_list_separator<char> > tok(line);
-		for(boost::tokenizer<boost::escaped_list_separator<char> >::iterator iter = tok.begin(); iter != tok.end(); ++iter)
-		{
-			data.push_back(*iter);
-		}
+		fout << getLine(*iter) << std::endl;
 	}
-	return data;
-}
 
-std::string Util::implode(std::vector<std::string> data, std::string delim)
-{
-	std::string line = "";
-
-	for( std::vector<std::string>::iterator iter = data.begin(); iter != data.end(); iter++)
-	{
-		line = line + *iter + delim; 
-	}
-	line = line.substr(0, line.size() - 1);
-
-	return line;
-}
-
-std::string Util::getTimestamp()
-{
-	std::time_t rawtime;
-	struct tm * timeinfo;
-
-	rawtime = std::time(NULL);
-	timeinfo = std::localtime(&rawtime);
-
-	return std::string(std::asctime(timeinfo));
+	fout.close();
+	
+	return (int)data.size();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-//		Protected Methods
+//		Private Methods
 //
 /////////////////////////////////////////////////////////////////////////////////////
-Util::~Util()
+std::string CSVWriter::getLine(Record data)
 {
-	if(m_instance)
-		delete(m_instance);
+	std::vector<std::string> line;
+	
+	for(int i = 0; i < data.fields; i++)
+	{
+		line.push_back(boost::lexical_cast<std::string>(data.data[i]));
+	}
+	return Util::getSingleton()->implode(line, m_sDelim);
 }

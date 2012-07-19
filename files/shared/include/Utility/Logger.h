@@ -16,35 +16,50 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		TXTWriter.h
+//		Logger.h
 //
-//
+//		internal logging utility
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef TXT_WRITER_H
-#define TXT_WRITER_H
-
-#include "DataWriter.h"
-#include "DataStructs.h"
-#include "Util.h"
+#ifndef LOGGER_H
+#define LOGGER_H
 
 #include <string>
-#include <vector>
 #include <iostream>
 #include <fstream>
+#include "Util.h"
+#include "Settings.h"
 #include "boost/lexical_cast.hpp"
 
-class TXTWriter : public DataWriter
+typedef enum LOG_OPTIONS{
+	FILE_OUT = 1,
+	CONSOLE_OUT = 2,
+	WARNING = 16,
+	INFO = 48,
+	DEBUG = 112
+} LOG_OPTIONS_T;
+
+class Logger
 {
-public: // Constructors
-					TXTWriter(std::string fileName) : DataWriter(fileName) {};
+public:
+	static Logger * getSingleton();
+	static void		log(std::string msg);
+	static void		log(std::string msg, LOG_OPTIONS opts);
+protected:
+	Logger();
+	~Logger();
 
-public: // Public Methods
-	int				Write(std::vector<Record> data);
+private:
+	static void		writeLine(std::string line);
 
+private:
+	static Logger*		m_pInstance;
+	static std::string	m_sFileName;
+	static LOG_OPTIONS	m_eDefaultLogOptions;
+	static LOG_OPTIONS	m_eLogLevel;
 };
 
-#endif // TXT_WRITER_H
+#endif // LOGGER_H

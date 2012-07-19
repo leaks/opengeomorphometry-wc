@@ -16,51 +16,37 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//		Settings.h
+//		TXTReader.h
 //
-//		Setting file manager
+//
 //
 //		Author: M Harrison mharrison@niagararesearch.org
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef TXT_READER_H
+#define TXT_READER_H
+
+#include "DataFiles/DataReader.h"
+#include "DataFiles/DataStructs.h"
+#include "Utility/Util.h"
 
 #include <string>
-#include <map>
+#include <vector>
 #include <iostream>
 #include <fstream>
-#include "Util.h"
 #include "boost/lexical_cast.hpp"
 
-class Settings
+class TXTReader : public DataReader
 {
-public: // Public Methods
-	static	Settings*	getSingleton();
-	template <class T>
-	static	T			getValue(std::string key){return boost::lexical_cast<T>((m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second : "");};
-	template <>
-	static std::string	getValue<std::string>(std::string key){return (m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second : "";};
-	static	void		setValue(std::string key, std::string value);
-	static	void		setFileName(std::string fileName);
-	static	void		forceRead();
+public: // Constructors
+						TXTReader(std::string fileName) : DataReader(fileName) {};
 
-protected: // Constructors
-						Settings();
-						~Settings();
+public: // Public Methods
+	std::vector<Record>	Read();
 
 private: // Private Methods
-	static void			read();
-	static void			write();
-	static void			update(std::string key);
-	static void			writeLine(std::string line);
-	static void			parseLine(std::string line);
-
-private: // Properties
-	static	Settings*							m_pInstance;
-	static	std::string							m_sFileName;
-	static	std::map<std::string, std::string>	m_mSettings;
+	Record				getData(std::string line);
 };
 
-#endif // SETTINGS_H
+#endif // TXT_READER_H

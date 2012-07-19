@@ -24,7 +24,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-#include "Logger.h"
+#include "Utility/Logger.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
@@ -55,49 +55,58 @@ void Logger::log(std::string msg)
 
 void Logger::log(std::string msg, LOG_OPTIONS opts)
 {
+	opts = (LOG_OPTIONS)(opts | m_eDefaultLogOptions);
+	if((opts & WARNING) == WARNING)
+	{
+		if((opts & m_eLogLevel) == WARNING)
+		{
+			//return;
+
+			if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
+			{
+				writeLine(Util::getSingleton()->getTimestamp() + " WARNING: " + msg);
+			}
+
+			if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
+			{
+				std::cout << Util::getSingleton()->getTimestamp() << " WARNING: " << msg << std::endl;
+			}
+		}
+	}
+
+	if((opts & INFO) == INFO)
+	{
+		if((opts & m_eLogLevel) == INFO)
+		{
+			//return;
+
+			if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
+			{
+				writeLine(Util::getSingleton()->getTimestamp() + " INFO: " + msg);
+			}
+
+			if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
+			{
+				std::cout << Util::getSingleton()->getTimestamp() << " INFO: " << msg << std::endl;
+			}
+		}
+	}
+	
 	if((opts & DEBUG) == DEBUG)
 	{
-		if((opts & m_eLogLevel) != DEBUG)
-			return;
-
-		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
+		if((opts & m_eLogLevel) == DEBUG)
 		{
-			writeLine(Util::getSingleton()->getTimestamp() + " DEBUG: " + msg);
-		}
+			//return;
 
-		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
-		{
-			std::cout << Util::getSingleton()->getTimestamp() << " DEBUG: " << msg << std::endl;
-		}
-	}
-	else if((opts & INFO) == INFO)
-	{
-		if((opts & m_eLogLevel) != INFO)
-			return;
+			if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
+			{
+				writeLine(Util::getSingleton()->getTimestamp() + " DEBUG: " + msg);
+			}
 
-		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
-		{
-			writeLine(Util::getSingleton()->getTimestamp() + " INFO: " + msg);
-		}
-
-		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
-		{
-			std::cout << Util::getSingleton()->getTimestamp() << " INFO: " << msg << std::endl;
-		}
-	}
-	else if((opts & WARNING) == WARNING)
-	{
-		if((opts & m_eLogLevel) != WARNING)
-			return;
-
-		if(((opts & m_eDefaultLogOptions) & FILE_OUT) == FILE_OUT)
-		{
-			writeLine(Util::getSingleton()->getTimestamp() + " WARNING: " + msg);
-		}
-
-		if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
-		{
-			std::cout << Util::getSingleton()->getTimestamp() << " WARNING: " << msg << std::endl;
+			if(((opts & m_eDefaultLogOptions) & CONSOLE_OUT) == CONSOLE_OUT)
+			{
+				std::cout << Util::getSingleton()->getTimestamp() << " DEBUG: " << msg << std::endl;
+			}
 		}
 	}
 }
