@@ -29,8 +29,8 @@
 #include "ThreadManager.h"
 #include "LandmapManager.h"
 #include "InterNNManager.h"
-#include "Utility\Settings.h"
-#include "Utility\Logger.h"
+#include "Utility/Settings.h"
+#include "Utility/Logger.h"
 
 // Main entry point
 int main(int argc, char *argv[])

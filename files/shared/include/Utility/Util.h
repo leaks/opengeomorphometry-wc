@@ -30,8 +30,8 @@
 #include <string>
 #include <vector>
 #include <ctime>
-#include "boost\tokenizer.hpp"
-#include "boost\lexical_cast.hpp"
+#include "boost/tokenizer.hpp"
+#include "boost/lexical_cast.hpp"
 
 class Util
 {

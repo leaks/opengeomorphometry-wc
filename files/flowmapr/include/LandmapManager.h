@@ -27,9 +27,9 @@
 #ifndef LANDMAP_MANAGER_H
 #define LANDMAP_MANAGER_H
 
-#include "DataFiles\DataStructs.h"
-#include "DataFiles\CSVWriter.h"
-#include "DataFiles\CSVReader.h"
+#include "DataFiles/DataStructs.h"
+#include "DataFiles/CSVWriter.h"
+#include "DataFiles/CSVReader.h"
 #include "ThreadManager.h"
 #include "LandmapThread.h"
 #include <vector>

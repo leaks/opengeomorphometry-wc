@@ -35,18 +35,32 @@
 #include "Util.h"
 #include "boost/lexical_cast.hpp"
 
+// Ugly, but complaint with C++ 2003 spec 14.7.3/2 and 14.5.2/2
+namespace detail
+{
+	template <class T>
+	T getValue( const std::map<std::string, std::pair<std::string,bool>> &m, const std::string &key )
+	{
+		return boost::lexical_cast<T>( m.count( key ) > 0 ? m.find( key )->second.first : "" );
+	}
+	
+	template <> inline
+	std::string getValue( const std::map<std::string, std::pair<std::string,bool>> &m, const std::string &key )
+	{
+		return m.count( key ) > 0 ? m.find( key )->second.first : "";
+	}
+}
+
 class Settings
 {
 public: // Public Methods
 	static	Settings*	getSingleton();
 	template <class T>
-	static	T			getValue(std::string key){return boost::lexical_cast<T>((m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second.first : "");};
-	template <>
-	static std::string	getValue<std::string>(std::string key){return (m_mSettings.count(key) > 0) ? m_mSettings.find(key)->second.first : "";};
+	static	T		getValue( const std::string &s ) { return detail::getValue<T>( m_mSettings, s ); }
 	static	void		setValue(std::string key, std::string value, bool cmdLine = false);
 	static	void		setFileName(std::string fileName);
 	static	void		forceRead();
-
+	
 protected: // Constructors
 						Settings();
 						~Settings();

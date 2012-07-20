@@ -23,6 +23,9 @@
 //#include "stdafx.h"
 #include "DEMProcess.h"
 
+#ifdef LINUX
+# define _msize( x ) sizeof( *x )
+#endif
 
 #ifdef _DEBUG
 #undef THIS_FILE
