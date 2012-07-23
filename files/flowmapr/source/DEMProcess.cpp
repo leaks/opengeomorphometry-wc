@@ -23,10 +23,6 @@
 //#include "stdafx.h"
 #include "DEMProcess.h"
 
-#ifdef LINUX
-# define _msize( x ) sizeof( *x )
-#endif
-
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
@@ -71,7 +67,7 @@ int CDEMProcess::FlowDir(double *pfDEMGrid, short *piDIRGrid)
 
 	// Assign array to store flat cells
 	_pFlatCell = (int *) malloc (10 * sizeof (int));
-	size = _msize(_pFlatCell);
+	size = sizeof(_pFlatCell);
 	_iNumFlatCell = 0;
 	
 	//      Process matrix by ROW/COL
@@ -169,7 +165,7 @@ int CDEMProcess::FlowDir(double *pfDEMGrid, short *piDIRGrid)
 					if (_iNumFlatCell % 10 == 0)
 					{
 						_pFlatCell = (int *) realloc(_pFlatCell, size + (10 * sizeof(int)));
-						size = _msize(_pFlatCell);
+						size = sizeof(_pFlatCell);
 					}
 				}
 			}
